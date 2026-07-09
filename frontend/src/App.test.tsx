@@ -9,9 +9,11 @@ describe("App", () => {
     expect(
       screen.getByRole("heading", { name: "JobTrackr" }),
     ).toBeInTheDocument();
+    expect(screen.getByLabelText("Primary navigation")).toBeInTheDocument();
     expect(screen.getByText("Smart Job Discovery")).toBeInTheDocument();
     expect(screen.getByText("External Search Links")).toBeInTheDocument();
-    expect(screen.getByText("Application Tracker")).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "Application Tracker" }),
+    ).toBeInTheDocument();
   });
 });
-
