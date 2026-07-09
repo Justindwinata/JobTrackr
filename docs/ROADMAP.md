@@ -11,17 +11,20 @@
 
 ## JT-0002 - Frontend Job Discovery Form and Results UI
 
-- Build skill, role, and location input UI.
-- Display generated recommendation results.
-- Add external search link cards.
-- Connect the frontend to `POST /job-search/recommendations`.
-- Add frontend tests for form validation and results rendering.
+- Build skill, role, and location input UI. Completed.
+- Display generated recommendation results. Completed.
+- Add external search link cards. Completed.
+- Connect the frontend to `POST /job-search/recommendations`. Completed.
+- Add frontend tests for form validation and results rendering. Completed.
+- Add professional multi-page UI foundation. Completed.
+- Add original JobTrackr logo and brand system. Completed.
 
-## JT-0003 - Manual Opportunity Saving
+## JT-0003 - Saved Opportunities Foundation and Manual Job Saving Workflow
 
-- Add manual job opportunity form.
-- Add local persistence foundation.
-- Track basic application status.
+- Add persistence foundation.
+- Let users manually save opportunities found through external search links.
+- Store source URL, company, role, location, notes, and status.
+- Keep saving manual and user-controlled.
 
 ## JT-0004 - Analytics and Reporting Foundation
 

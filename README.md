@@ -28,6 +28,18 @@ This foundation contract includes:
 - Backend and frontend tests.
 - Product documentation and engineering decision log.
 
+## JT-0002 Implementation
+
+The frontend now includes a professional multi-page product UI:
+
+- Original JobTrackr logo and navigation shell.
+- Home page with hero, supported job boards, workflow, value cards, and credibility section.
+- Functional Discover Jobs page connected to the backend recommendation endpoint.
+- Polished future pages for Saved Opportunities, Application Tracker, and Reports.
+- Brand system using `#FF9E20`, `#215E61`, `#1D2128`, and `#F4F2F2`.
+
+The future pages are intentionally honest placeholders. They do not show fake saved jobs, fake application data, or fake reports.
+
 ## Repository Structure
 
 ```text
@@ -76,6 +88,8 @@ cd frontend
 npm install
 npm run dev
 ```
+
+By default, the frontend calls the backend at `http://127.0.0.1:8000`. To point it elsewhere, set `VITE_API_BASE_URL`.
 
 Build the app:
 

@@ -38,3 +38,33 @@ Reasoning:
 
 - JT-0001 focuses on project foundation and domain contracts.
 - Persistence should be introduced when the tracker workflow has concrete data requirements.
+
+## 2026-07-10 - Create an original product identity
+
+JT-0002 adds a custom JobTrackr SVG logo using the project palette.
+
+Reasoning:
+
+- A portfolio product needs a memorable visual identity.
+- The logo must be original and not depend on third-party brand marks.
+- The symbol uses a path/search motif to suggest career direction and tracking.
+
+## 2026-07-10 - Use honest future pages
+
+Saved Opportunities, Application Tracker, and Reports are implemented as polished future-feature pages instead of fake dashboards.
+
+Reasoning:
+
+- The product should feel complete without pretending data exists.
+- Recruiters can see the intended product direction and the engineering boundary.
+- Persistence, tracker data, and reports should be introduced in later contracts with real behavior.
+
+## 2026-07-10 - Keep Discover Jobs as the only functional JT-0002 workflow
+
+The Discover Jobs page connects to the existing deterministic backend endpoint.
+
+Reasoning:
+
+- This validates the frontend-to-backend contract.
+- It keeps the UI milestone useful without adding database, auth, scraping, or AI scope.
+- It makes the no-scraping boundary visible in the user experience.
