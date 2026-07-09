@@ -6,16 +6,27 @@ The product helps users choose skills, target roles, and preferred locations, th
 
 JobTrackr does not scrape job boards, ingest real-time job listings, or automate job applications.
 
-## Current Status
+## Product Scope
 
-JT-0001 is the project bootstrap and product foundation contract.
+JobTrackr is designed to help early-career candidates:
 
-Implemented foundation:
+- Generate targeted search queries from selected skills, roles, and locations.
+- Open those searches manually on trusted external job boards.
+- Save interesting opportunities manually in later contracts.
+- Track job application progress through a professional dashboard in later contracts.
 
-- Repository structure
-- Product documentation
-- Backend and frontend folders
-- Initial roadmap and decision log
+JobTrackr is not a scraper, not a job board clone, and not an automated application tool.
+
+## JT-0001 Implementation
+
+This foundation contract includes:
+
+- FastAPI backend package with health check.
+- Deterministic job search recommendation contracts.
+- Recommendation API endpoint that generates safe external search URLs.
+- React, TypeScript, and Vite frontend foundation.
+- Backend and frontend tests.
+- Product documentation and engineering decision log.
 
 ## Repository Structure
 
@@ -28,3 +39,68 @@ CHANGELOG.md
 Makefile
 ```
 
+## Backend
+
+Run the API locally:
+
+```bash
+cd backend
+python3 -m pip install -e ".[dev]"
+uvicorn jobtrackr_api.main:app --reload
+```
+
+Health check:
+
+```bash
+curl http://127.0.0.1:8000/health
+```
+
+Recommendation endpoint:
+
+```bash
+curl -X POST http://127.0.0.1:8000/job-search/recommendations \
+  -H "Content-Type: application/json" \
+  -d '{
+    "skills": [{"name": "React"}, {"name": "TypeScript"}, {"name": "SQL"}],
+    "target_roles": [{"title": "Frontend Developer"}],
+    "preferred_locations": [{"name": "Jakarta"}]
+  }'
+```
+
+## Frontend
+
+Run the app locally:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Build the app:
+
+```bash
+cd frontend
+npm run build
+```
+
+## Testing
+
+Run all validation checks:
+
+```bash
+make check
+```
+
+Run focused checks:
+
+```bash
+make backend-test
+make frontend-test
+make frontend-build
+make format-check
+```
+
+## No-Scraping Statement
+
+JobTrackr does not scrape LinkedIn, JobStreet Indonesia, Glints, Karir.com, Dealls, or any other third-party platform. The current backend only generates deterministic external search URLs from user-selected inputs. Users open those links manually in their browser.
