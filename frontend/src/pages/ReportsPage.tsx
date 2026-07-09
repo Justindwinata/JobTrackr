@@ -1,17 +1,25 @@
+import { ChartNoAxesCombined } from "lucide-react";
+
+import FutureFeaturePage from "../components/FutureFeaturePage";
+
+const capabilities = [
+  "Summarize saved opportunities by status, source, location, and role direction.",
+  "Show progress only from real user-entered tracker data once persistence exists.",
+  "Prepare export-friendly career progress snapshots for personal review.",
+];
+
 function ReportsPage() {
   return (
-    <main className="page-shell">
-      <section className="placeholder-page">
-        <span className="badge badge-teal">Reports</span>
-        <h1>Reporting foundation</h1>
-        <p>
-          Reports will be built after real saved opportunities and tracker data
-          exist. No fake analytics are generated in JT-0002.
-        </p>
-      </section>
-    </main>
+    <FutureFeaturePage
+      badge="Reports"
+      title="Career progress reporting foundation"
+      description="Reports will help users understand their application effort after the app has real saved opportunities and tracker history."
+      icon={ChartNoAxesCombined}
+      contract="Future contract"
+      capabilities={capabilities}
+      boundary="No charts or analytics are generated because JobTrackr does not have real tracker data yet."
+    />
   );
 }
 
 export default ReportsPage;
-
