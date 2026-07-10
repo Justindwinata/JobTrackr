@@ -11,8 +11,11 @@ flowchart LR
     API --> Domain["Recommendation Domain Service"]
     API --> Repo["Saved Opportunity Repository"]
     API --> Tracker["Tracker Analytics Service"]
+    API --> Reports["Career Report Service"]
     Repo --> SQLite["Local SQLite Database"]
     Tracker --> Repo
+    Reports --> Tracker
+    Reports --> Repo
     Domain --> Links["External Search URLs"]
     User --> Boards["External Job Boards"]
     Links --> Boards
@@ -41,6 +44,8 @@ Current endpoints:
 - `PUT /opportunities/{opportunity_id}`
 - `DELETE /opportunities/{opportunity_id}`
 - `GET /tracker/summary`
+- `GET /reports/career-progress`
+- `GET /reports/career-progress.html`
 
 ## Frontend
 
@@ -57,7 +62,7 @@ Current modules:
 - `pages/DiscoverPage.tsx` calls the backend recommendation endpoint and renders external search links.
 - `pages/SavedPage.tsx` renders the manual save workflow and saved opportunity management UI.
 - `pages/TrackerPage.tsx` renders the functional tracker dashboard from saved opportunity analytics.
-- `pages/ReportsPage.tsx` renders a polished future-feature preview with clearly labeled non-data skeletons.
+- `pages/ReportsPage.tsx` renders the functional career progress report page.
 - `styles.css` provides the brand system, layout, responsive rules, cards, buttons, badges, forms, and result states.
 - `App.test.tsx` and page tests verify core product content and Discover Jobs behavior.
 
@@ -135,6 +140,51 @@ sequenceDiagram
     F-->>U: Render tracker dashboard
 ```
 
+## Career Progress Reports
+
+JT-0006 adds deterministic career progress reports generated from saved opportunities and tracker analytics.
+
+The report service produces:
+
+- Report metadata and generated timestamp.
+- Executive summary counts.
+- Status, source, and priority distributions.
+- Pipeline groups by status.
+- Upcoming deadlines and overdue opportunities.
+- Recent activity.
+- Practical notes stating that reports are deterministic, manually sourced, and no-scraping.
+
+The backend exposes two report surfaces:
+
+- `GET /reports/career-progress` for JSON used by the React Reports page.
+- `GET /reports/career-progress.html` for a standalone browser-readable HTML report.
+
+The HTML renderer escapes user-entered content before inserting it into the document. It does not generate PDFs, call external APIs, or render fake analytics.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant A as FastAPI
+    participant C as Career Report Service
+    participant T as Tracker Analytics
+    participant R as Repository
+    participant D as SQLite
+
+    U->>F: Open Reports
+    F->>A: GET /reports/career-progress
+    A->>C: Build career report
+    C->>R: List saved opportunities
+    R->>D: SELECT saved_opportunities
+    D-->>R: Local saved records
+    R-->>C: Saved opportunities
+    C->>T: Build deterministic tracker summary
+    T-->>C: Analytics
+    C-->>A: Career progress report
+    A-->>F: JSON report
+    F-->>U: Render Reports page
+```
+
 ## Saved Opportunity Flow
 
 ```mermaid
@@ -166,5 +216,7 @@ JT-0003 changes Saved Opportunities from placeholder to real local persistence. 
 JT-0004 changes the frontend presentation layer. It redesigns the product shell, Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports using the Stitch-inspired SaaS direction while preserving the backend contracts and no-scraping boundary.
 
 JT-0005 changes Application Tracker from an honest future preview into a real dashboard. It only summarizes manually saved opportunities already stored in SQLite.
+
+JT-0006 changes Reports from an honest future preview into a real reporting workflow. It generates JSON and standalone HTML reports from saved opportunities and tracker analytics only.
 
 The backend CORS configuration allows the expected Vite development origin and adjacent Vite fallback ports for local development when the default frontend port is already occupied.

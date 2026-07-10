@@ -102,3 +102,25 @@ All notable changes to JobTrackr will be documented in this file.
 
 - Tracker analytics are derived only from manually saved opportunities.
 - No fake records, fake analytics, scraping, AI recommendations, authentication, cloud database, report generation, or drag-and-drop pipeline behavior were added.
+
+## 0.6.0 - 2026-07-11
+
+### Added
+
+- Added career progress report response models.
+- Added deterministic report service that reuses tracker analytics and saved opportunity data.
+- Added `GET /reports/career-progress` JSON endpoint.
+- Added `GET /reports/career-progress.html` standalone HTML report endpoint.
+- Added safe HTML renderer that escapes user-entered opportunity content.
+- Added functional Reports frontend page with overview cards, distributions, pipeline summary, deadlines, overdue items, recent activity, refresh action, and HTML report link.
+- Added backend and frontend tests for reports.
+
+### Changed
+
+- Replaced the Reports future-preview page with a real reporting workflow.
+- Updated documentation to describe report generation from manually saved opportunities.
+
+### Notes
+
+- Reports are generated only from local user-entered saved opportunities and deterministic tracker analytics.
+- No fake records, fake analytics, scraping, external job board APIs, AI ranking, authentication, cloud database, PDF export, or drag-and-drop pipeline behavior were added.

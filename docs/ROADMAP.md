@@ -46,6 +46,14 @@
 
 ## JT-0006 - Reports and Export Foundation
 
-- Build report generation from tracker and saved opportunity data.
-- Add export-friendly HTML summaries.
-- Add report preview and saved report workflow foundation.
+- Build report generation from tracker and saved opportunity data. Completed.
+- Add export-friendly HTML summaries. Completed.
+- Add report preview and saved report workflow foundation. Completed.
+- Keep reports deterministic and grounded in manually saved opportunities. Completed.
+
+## JT-0007 - Final Product Stabilization, UX Polish, and Demo Readiness
+
+- Stabilize core user flows for portfolio demos.
+- Improve accessibility and keyboard interaction coverage.
+- Add demo data seeding guidance without shipping fake records as real user data.
+- Prepare screenshot and walkthrough documentation.

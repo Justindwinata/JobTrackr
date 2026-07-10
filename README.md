@@ -12,8 +12,9 @@ JobTrackr is designed to help early-career candidates:
 
 - Generate targeted search queries from selected skills, roles, and locations.
 - Open those searches manually on trusted external job boards.
-- Save interesting opportunities manually in later contracts.
-- Track job application progress through a professional dashboard in later contracts.
+- Save interesting opportunities manually.
+- Track job application progress through a professional dashboard.
+- Generate career progress reports from saved opportunities and tracker analytics.
 
 JobTrackr is not a scraper, not a job board clone, and not an automated application tool.
 
@@ -76,6 +77,18 @@ Application Tracker is now a functional dashboard powered by real saved opportun
 - Deadline and recent activity sections help users review upcoming work and recently updated records.
 
 The tracker does not fabricate analytics. Empty states stay honest when no saved opportunities exist.
+
+## JT-0006 Implementation
+
+Reports is now a functional career progress reporting module:
+
+- `GET /reports/career-progress` returns JSON report data derived from saved opportunities and tracker analytics.
+- `GET /reports/career-progress.html` returns a standalone browser-readable HTML report.
+- Reports summarize total opportunities, active and closed counts, application stages, distributions, pipeline groups, deadlines, overdue opportunities, and recent activity.
+- The frontend Reports page loads real report data, supports refresh, and opens the HTML report in a new tab.
+- The HTML report escapes user-entered content before rendering.
+
+Reports do not use fake data, PDF export, scraping, external job board APIs, or AI-generated ranking.
 
 ## Repository Structure
 
@@ -141,6 +154,13 @@ Tracker summary endpoint:
 curl http://127.0.0.1:8000/tracker/summary
 ```
 
+Career progress report endpoints:
+
+```bash
+curl http://127.0.0.1:8000/reports/career-progress
+open http://127.0.0.1:8000/reports/career-progress.html
+```
+
 ## Frontend
 
 Run the app locally:
@@ -180,4 +200,4 @@ make format-check
 
 ## No-Scraping Statement
 
-JobTrackr does not scrape LinkedIn, JobStreet Indonesia, Glints, Karir.com, Dealls, or any other third-party platform. The backend generates deterministic external search URLs from user-selected inputs, stores only user-entered saved opportunities, and derives tracker analytics only from those local records. Users open external job board links manually in their browser.
+JobTrackr does not scrape LinkedIn, JobStreet Indonesia, Glints, Karir.com, Dealls, or any other third-party platform. The backend generates deterministic external search URLs from user-selected inputs, stores only user-entered saved opportunities, and derives tracker analytics and reports only from those local records. Users open external job board links manually in their browser.

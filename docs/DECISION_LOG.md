@@ -138,3 +138,23 @@ Reasoning:
 - Saved Opportunities already supports editing status and notes.
 - A read-focused dashboard reduces interaction risk while analytics contracts stabilize.
 - Drag-and-drop can be added later with explicit persistence and accessibility handling.
+
+## 2026-07-11 - Generate reports from tracker analytics
+
+JT-0006 builds career progress reports from saved opportunities and the same deterministic analytics used by Application Tracker.
+
+Reasoning:
+
+- Reports and dashboard metrics should stay consistent.
+- Reusing tracker analytics avoids parallel calculation rules.
+- Reports remain grounded in manually saved records instead of scraped or fabricated data.
+
+## 2026-07-11 - Provide standalone HTML report before PDF export
+
+JT-0006 adds a browser-readable HTML report endpoint and intentionally avoids PDF export.
+
+Reasoning:
+
+- HTML is simple to inspect, test, and open locally without deployment or extra rendering dependencies.
+- The report can still be printed by the browser if needed, while the product avoids claiming PDF export.
+- Safe escaping can be tested directly against user-entered saved opportunity fields.
