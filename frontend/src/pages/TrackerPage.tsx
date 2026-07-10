@@ -8,6 +8,25 @@ const capabilities = [
   "Keep tracker data grounded in user-entered opportunities instead of generated sample records.",
 ];
 
+const previewItems = [
+  {
+    label: "Wishlist",
+    detail: "Review saved opportunities before deciding whether to apply.",
+  },
+  {
+    label: "Applied",
+    detail: "Track submitted applications and follow-up timing.",
+  },
+  {
+    label: "Interview",
+    detail: "Prepare interview notes from real saved opportunity records.",
+  },
+  {
+    label: "Offer",
+    detail: "Compare outcomes only after actual user-entered progress exists.",
+  },
+];
+
 function TrackerPage() {
   return (
     <FutureFeaturePage
@@ -17,7 +36,9 @@ function TrackerPage() {
       icon={ListChecks}
       contract="Future contract"
       capabilities={capabilities}
-      boundary="No tracker records are shown because saved opportunity persistence is not available yet."
+      boundary="No tracker pipeline records are shown yet. The future dashboard will use real manually saved opportunities."
+      previewTitle="Pipeline structure planned for JT-0005"
+      previewItems={previewItems}
     />
   );
 }

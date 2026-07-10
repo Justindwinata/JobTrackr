@@ -59,3 +59,24 @@ All notable changes to JobTrackr will be documented in this file.
 - Saved opportunities are manually entered by users.
 - SQLite is local-only and stored under an ignored `backend/data/` path.
 - JobTrackr still does not scrape, import, or ingest real-time job listings.
+
+## 0.4.0 - 2026-07-11
+
+### Added
+
+- Added Stitch-inspired UI implementation notes.
+- Added redesigned SaaS-style app shell with desktop sidebar navigation.
+- Added denser Home page with product mockup, workflow preview, and trust boundaries.
+- Added redesigned Discover Jobs workspace with parsed input metrics and polished recommendation cards.
+- Added redesigned Saved Opportunities workspace with summary metrics, richer cards, and improved edit foundation.
+- Added polished Application Tracker and Reports future-preview pages with clearly labeled non-data skeletons.
+
+### Changed
+
+- Refined global CSS tokens, cards, badges, forms, empty states, and responsive layouts.
+- Allowed adjacent local Vite fallback ports for backend CORS during development.
+
+### Notes
+
+- No fake listings, fake saved opportunities, or fake analytics were added.
+- JobTrackr remains a no-scraping, user-controlled workflow.

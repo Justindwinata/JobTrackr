@@ -8,6 +8,25 @@ const capabilities = [
   "Prepare export-friendly career progress snapshots for personal review.",
 ];
 
+const previewItems = [
+  {
+    label: "Status Mix",
+    detail: "Future chart area for wishlist, applied, interview, offer, and closed counts.",
+  },
+  {
+    label: "Source Quality",
+    detail: "Future summary of which manually used platforms lead to saved opportunities.",
+  },
+  {
+    label: "Role Direction",
+    detail: "Future view of target role concentration from real saved records.",
+  },
+  {
+    label: "Progress Notes",
+    detail: "Future export-friendly summary for weekly career review.",
+  },
+];
+
 function ReportsPage() {
   return (
     <FutureFeaturePage
@@ -18,6 +37,8 @@ function ReportsPage() {
       contract="Future contract"
       capabilities={capabilities}
       boundary="No charts or analytics are generated because JobTrackr does not have real tracker data yet."
+      previewTitle="Reporting modules planned for a later contract"
+      previewItems={previewItems}
     />
   );
 }

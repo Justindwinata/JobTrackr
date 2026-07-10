@@ -53,3 +53,11 @@ The Stitch package moves JobTrackr toward a denser career-tech SaaS interface:
 - Prefer tighter section heights, denser cards, and clear information rails over oversized generic heroes.
 - Use pill chips for source, status, and selected input previews.
 - Use skeleton cards only when explicitly labeled as future workflow previews.
+
+## JT-0004 Implementation Result
+
+- App shell now uses a dark teal desktop sidebar with orange active states and a responsive mobile header.
+- Home now presents a denser SaaS-style product story with a workflow mockup, board strip, feature matrix, and no-scraping trust panel.
+- Discover Jobs now uses a split command workspace, parsed input metrics, result summaries, and polished recommendation cards while preserving the recommendation API request shape.
+- Saved Opportunities now uses a workspace layout with manual form, metrics, richer saved cards, status/source badges, filters, and edit foundation while preserving CRUD behavior.
+- Application Tracker and Reports now show clearly labeled future workflow previews instead of empty placeholders or fake analytics.

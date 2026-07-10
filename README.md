@@ -52,6 +52,19 @@ Saved Opportunities is now the first real tracker feature:
 
 Saved opportunities are user-entered records only. JobTrackr still does not scrape job boards or import third-party listings.
 
+## JT-0004 Implementation
+
+The frontend now follows the Stitch-inspired SaaS career suite direction:
+
+- Redesigned app shell with desktop sidebar, stronger active states, and responsive navigation.
+- Denser Home page with product mockup, workflow preview, supported boards, feature matrix, and trust boundaries.
+- Redesigned Discover Jobs workspace with input builder, parsed selection chips, result summary, and polished recommendation cards.
+- Redesigned Saved Opportunities workspace with metrics, manual-entry form, status/source cards, filters, edit panel, and empty states.
+- Polished Application Tracker and Reports future pages with clearly labeled preview skeletons.
+- Local development CORS now supports adjacent Vite fallback ports when `5173` is already occupied.
+
+The redesign does not add fake listings, fake analytics, scraping, AI recommendations, authentication, deployment, or third-party job board API integrations.
+
 ## Repository Structure
 
 ```text

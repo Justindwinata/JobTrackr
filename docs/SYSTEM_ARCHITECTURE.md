@@ -53,7 +53,7 @@ Current modules:
 - `pages/HomePage.tsx` renders the professional product home experience.
 - `pages/DiscoverPage.tsx` calls the backend recommendation endpoint and renders external search links.
 - `pages/SavedPage.tsx` renders the manual save workflow and saved opportunity management UI.
-- `pages/TrackerPage.tsx` and `pages/ReportsPage.tsx` render polished future-feature placeholders.
+- `pages/TrackerPage.tsx` and `pages/ReportsPage.tsx` render polished future-feature previews with clearly labeled non-data skeletons.
 - `styles.css` provides the brand system, layout, responsive rules, cards, buttons, badges, forms, and result states.
 - `App.test.tsx` and page tests verify core product content and Discover Jobs behavior.
 
@@ -121,3 +121,7 @@ The system generates URLs only. It does not scrape pages, call private APIs, aut
 JT-0002 keeps future pages honest. Saved Opportunities, Application Tracker, and Reports are visual foundations only until persistence and real user-entered data exist.
 
 JT-0003 changes Saved Opportunities from placeholder to real local persistence. It still only stores information manually entered by the user.
+
+JT-0004 changes the frontend presentation layer. It redesigns the product shell, Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports using the Stitch-inspired SaaS direction while preserving the backend contracts and no-scraping boundary.
+
+The backend CORS configuration allows the expected Vite development origin and adjacent Vite fallback ports for local development when the default frontend port is already occupied.

@@ -27,14 +27,23 @@
 - Keep saving manual and user-controlled. Completed.
 - Add saved opportunity list, edit status/notes, delete, search, and filters. Completed.
 
-## JT-0004 - Application Tracker Dashboard and Status Pipeline Analytics
+## JT-0004 - Stitch-Inspired UI Redesign
+
+- Inspect Stitch design package and document implementation direction. Completed.
+- Redesign app shell and global navigation. Completed.
+- Redesign Home page as a career-tech SaaS product surface. Completed.
+- Redesign Discover Jobs while preserving deterministic backend integration. Completed.
+- Redesign Saved Opportunities while preserving CRUD behavior. Completed.
+- Redesign Application Tracker and Reports as honest future-feature previews. Completed.
+
+## JT-0005 - Application Tracker Dashboard and Status Pipeline Analytics
 
 - Build dashboard views from real saved opportunities.
 - Add status pipeline counts.
 - Add simple tracker analytics by source, role, location, and status.
 - Keep reports grounded in local user-entered data.
 
-## JT-0005 - Reports and Export Foundation
+## JT-0006 - Reports and Export Foundation
 
 - Show application status counts.
 - Add simple progress reports.

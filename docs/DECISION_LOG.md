@@ -98,3 +98,23 @@ Reasoning:
 - Status and notes are the highest-value fields for early application tracking.
 - A narrow edit foundation keeps the workflow useful without overbuilding analytics.
 - Future contracts can expand from real saved opportunity data.
+
+## 2026-07-11 - Translate Stitch design into the existing React app
+
+JT-0004 uses the uploaded Stitch package as visual direction instead of replacing the application with generated HTML.
+
+Reasoning:
+
+- Preserve the existing React, TypeScript, router, API client, and test structure.
+- Improve visual density and SaaS credibility while keeping the codebase maintainable.
+- Avoid fake data and unsupported claims while still making future pages portfolio-ready.
+
+## 2026-07-11 - Support adjacent Vite fallback ports in local CORS
+
+The backend allows adjacent Vite development ports when `5173` is already occupied locally.
+
+Reasoning:
+
+- Local QA should still work when another dev server owns the default Vite port.
+- The allowance is narrow to localhost and Vite fallback-style ports.
+- This preserves the production-facing product boundary because no deployment or external origin support is introduced.

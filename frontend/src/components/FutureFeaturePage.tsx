@@ -9,6 +9,11 @@ type FutureFeaturePageProps = {
   contract: string;
   capabilities: string[];
   boundary: string;
+  previewTitle: string;
+  previewItems: Array<{
+    label: string;
+    detail: string;
+  }>;
 };
 
 function FutureFeaturePage({
@@ -19,6 +24,8 @@ function FutureFeaturePage({
   contract,
   capabilities,
   boundary,
+  previewTitle,
+  previewItems,
 }: FutureFeaturePageProps) {
   return (
     <main className="page-shell">
@@ -44,6 +51,34 @@ function FutureFeaturePage({
         </aside>
       </section>
 
+      <section className="future-preview card" aria-labelledby="future-preview-title">
+        <div className="section-heading split-heading">
+          <div>
+            <span className="eyebrow">Future workflow preview</span>
+            <h2 id="future-preview-title">{previewTitle}</h2>
+          </div>
+          <p>
+            These panels describe the planned product structure only. They do
+            not represent real user records, listings, analytics, or imported
+            third-party data.
+          </p>
+        </div>
+        <div className="future-preview-grid">
+          {previewItems.map((item) => (
+            <article className="future-preview-card" key={item.label}>
+              <span className="badge badge-muted">Preview</span>
+              <strong>{item.label}</strong>
+              <p>{item.detail}</p>
+              <div className="skeleton-lines" aria-hidden="true">
+                <span />
+                <span />
+                <span />
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
       <section className="future-grid" aria-label={`${title} planned capabilities`}>
         {capabilities.map((capability) => (
           <article className="future-card card" key={capability}>
@@ -57,4 +92,3 @@ function FutureFeaturePage({
 }
 
 export default FutureFeaturePage;
-

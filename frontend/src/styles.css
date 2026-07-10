@@ -1024,6 +1024,73 @@ h2 {
   margin-top: var(--space-5);
 }
 
+.future-preview {
+  display: grid;
+  gap: var(--space-6);
+  margin-top: var(--space-5);
+  padding: var(--space-6);
+  overflow: hidden;
+  position: relative;
+}
+
+.future-preview::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto;
+  height: 5px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+}
+
+.future-preview-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.future-preview-card {
+  display: grid;
+  gap: var(--space-3);
+  min-height: 210px;
+  padding: var(--space-5);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius-sm);
+  background:
+    linear-gradient(180deg, rgba(33, 94, 97, 0.05), transparent),
+    #fffdfb;
+}
+
+.future-preview-card strong {
+  color: var(--color-neutral);
+  font-size: 1.05rem;
+}
+
+.future-preview-card p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.6;
+}
+
+.skeleton-lines {
+  display: grid;
+  gap: var(--space-2);
+  margin-top: auto;
+}
+
+.skeleton-lines span {
+  display: block;
+  height: 10px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #eceff1, #f7f3ed);
+}
+
+.skeleton-lines span:nth-child(2) {
+  width: 78%;
+}
+
+.skeleton-lines span:nth-child(3) {
+  width: 54%;
+}
+
 .future-card {
   display: grid;
   gap: var(--space-5);
@@ -2052,7 +2119,8 @@ h2 {
   }
 
   .split-heading,
-  .credibility-section {
+  .credibility-section,
+  .trust-panel {
     grid-template-columns: 1fr;
   }
 
@@ -2073,6 +2141,10 @@ h2 {
 
   .future-grid {
     grid-template-columns: 1fr;
+  }
+
+  .future-preview-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .discover-hero,
@@ -2148,7 +2220,8 @@ h2 {
     grid-template-columns: 1fr;
   }
 
-  .credibility-section {
+  .credibility-section,
+  .trust-panel {
     padding: var(--space-6);
   }
 
@@ -2166,6 +2239,10 @@ h2 {
 
   .future-hero {
     padding: var(--space-6);
+  }
+
+  .future-preview-grid {
+    grid-template-columns: 1fr;
   }
 
   .form-grid {
