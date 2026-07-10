@@ -57,8 +57,8 @@ describe("DiscoverPage", () => {
     expect(
       await screen.findByText("Frontend Developer roles in Jakarta"),
     ).toBeInTheDocument();
-    expect(screen.getByText("LinkedIn")).toBeInTheDocument();
-    expect(screen.getByText("Glints")).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /LinkedIn/i })).toBeInTheDocument();
+    expect(screen.getByRole("link", { name: /Glints/i })).toBeInTheDocument();
 
     await waitFor(() => {
       expect(globalThis.fetch).toHaveBeenCalledWith(

@@ -1,4 +1,11 @@
-import { AlertCircle, ExternalLink, Loader2, Search } from "lucide-react";
+import {
+  AlertCircle,
+  ArrowRight,
+  ExternalLink,
+  Loader2,
+  Search,
+  ShieldCheck,
+} from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -106,21 +113,40 @@ function DiscoverPage() {
     <main className="page-shell">
       <section className="discover-hero" aria-labelledby="discover-title">
         <div>
-          <span className="badge badge-accent">Functional JT-0002 page</span>
-          <h1 id="discover-title">Discover job search directions</h1>
+          <span className="badge badge-accent">Functional discovery workspace</span>
+          <h1 id="discover-title">Build focused job search directions</h1>
           <p>
             Enter skills, target roles, and locations. JobTrackr generates
             deterministic search recommendations and safe external links. It
             does not fetch real listings or scrape job boards.
           </p>
+          <div className="discover-hero-metrics" aria-label="Discovery guardrails">
+            <div>
+              <strong>5</strong>
+              <span>external platforms</span>
+            </div>
+            <div>
+              <strong>{preview.skills.length + preview.roles.length + preview.locations.length}</strong>
+              <span>parsed inputs</span>
+            </div>
+            <div>
+              <strong>Manual</strong>
+              <span>opening and saving</span>
+            </div>
+          </div>
         </div>
         <div className="discover-note card">
-          <Search size={26} />
-          <strong>Manual search workflow</strong>
+          <ShieldCheck size={26} />
+          <strong>No scraping boundary</strong>
           <span>
-            Open each generated platform link yourself and decide which
-            opportunities are worth saving later.
+            JobTrackr creates search URLs only. You open each platform yourself
+            and manually save opportunities you trust.
           </span>
+          <div className="platform-stack" aria-label="Supported external platforms">
+            {["LinkedIn", "JobStreet", "Glints", "Karir", "Dealls"].map((platform) => (
+              <span key={platform}>{platform}</span>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -129,7 +155,10 @@ function DiscoverPage() {
           <div className="form-header">
             <span className="eyebrow">Search inputs</span>
             <h2>Build recommendations</h2>
-            <p>Separate multiple values with commas.</p>
+            <p>
+              Use comma-separated values. The backend combines every role and
+              location into deterministic search directions.
+            </p>
           </div>
 
           <label className="field-group">
@@ -173,10 +202,14 @@ function DiscoverPage() {
         </form>
 
         <aside className="preview-panel card" aria-label="Current parsed inputs">
-          <span className="eyebrow">Current selection</span>
-          <PreviewGroup label="Skills" values={preview.skills} />
-          <PreviewGroup label="Roles" values={preview.roles} />
-          <PreviewGroup label="Locations" values={preview.locations} />
+          <div className="preview-panel-header">
+            <span className="eyebrow">Current selection</span>
+            <strong>{preview.roles.length * preview.locations.length || 0}</strong>
+            <p>possible recommendation cards before platform links are added</p>
+          </div>
+          <PreviewGroup label="Skills" values={preview.skills} tone="teal" />
+          <PreviewGroup label="Roles" values={preview.roles} tone="accent" />
+          <PreviewGroup label="Locations" values={preview.locations} tone="neutral" />
         </aside>
       </section>
 
@@ -193,12 +226,13 @@ function DiscoverPage() {
             </p>
             <Link className="button button-secondary" to="/saved">
               Found a matching job? Save it manually
+              <ArrowRight size={17} />
             </Link>
           </div>
         </div>
 
         {isLoading ? (
-          <div className="empty-state card" aria-live="polite">
+          <div className="empty-state empty-state-feature card" aria-live="polite">
             <Loader2 className="spin-icon" size={28} />
             <strong>Generating recommendations</strong>
             <p>JobTrackr is preparing safe external search URLs.</p>
@@ -206,58 +240,77 @@ function DiscoverPage() {
         ) : null}
 
         {!isLoading && recommendations.length > 0 ? (
-          <div className="recommendation-grid">
-            {recommendations.map((recommendation) => (
-              <article
-                className="recommendation-card card"
-                key={`${recommendation.target_role.title}-${recommendation.location.name}`}
-              >
-                <div className="recommendation-header">
-                  <span className="badge badge-teal">
-                    {recommendation.location.name}
-                  </span>
-                  <h3>{recommendation.title}</h3>
-                  <p>{recommendation.query}</p>
-                </div>
-
-                <div className="recommendation-meta">
-                  <div>
-                    <span>Target role</span>
-                    <strong>{recommendation.target_role.title}</strong>
+          <>
+            <div className="results-summary card" aria-label="Recommendation summary">
+              <div>
+                <strong>{recommendations.length}</strong>
+                <span>recommendation cards</span>
+              </div>
+              <div>
+                <strong>{recommendations[0]?.source_links.length ?? 0}</strong>
+                <span>platform links per card</span>
+              </div>
+              <div>
+                <strong>{preview.skills.length}</strong>
+                <span>matched skill inputs</span>
+              </div>
+            </div>
+            <div className="recommendation-grid">
+              {recommendations.map((recommendation) => (
+                <article
+                  className="recommendation-card card"
+                  key={`${recommendation.target_role.title}-${recommendation.location.name}`}
+                >
+                  <div className="recommendation-header">
+                    <div className="recommendation-kicker">
+                      <span className="badge badge-teal">
+                        {recommendation.location.name}
+                      </span>
+                      <span className="badge badge-muted">External search</span>
+                    </div>
+                    <h3>{recommendation.title}</h3>
+                    <p>{recommendation.query}</p>
                   </div>
-                  <div>
-                    <span>Matched skills</span>
-                    <div className="chip-row">
-                      {recommendation.matched_skills.map((skill) => (
-                        <span className="chip" key={skill.name}>
-                          {skill.name}
-                        </span>
-                      ))}
+
+                  <div className="recommendation-meta">
+                    <div>
+                      <span>Target role</span>
+                      <strong>{recommendation.target_role.title}</strong>
+                    </div>
+                    <div>
+                      <span>Matched skills</span>
+                      <div className="chip-row">
+                        {recommendation.matched_skills.map((skill) => (
+                          <span className="chip" key={skill.name}>
+                            {skill.name}
+                          </span>
+                        ))}
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <div className="external-link-grid">
-                  {recommendation.source_links.map((link) => (
-                    <a
-                      className="external-link-button"
-                      href={link.url}
-                      key={link.source}
-                      target="_blank"
-                      rel="noreferrer"
-                    >
-                      {link.label}
-                      <ExternalLink size={16} />
-                    </a>
-                  ))}
-                </div>
-              </article>
-            ))}
-          </div>
+                  <div className="external-link-grid">
+                    {recommendation.source_links.map((link) => (
+                      <a
+                        className="external-link-button"
+                        href={link.url}
+                        key={link.source}
+                        target="_blank"
+                        rel="noreferrer"
+                      >
+                        {link.label}
+                        <ExternalLink size={16} />
+                      </a>
+                    ))}
+                  </div>
+                </article>
+              ))}
+            </div>
+          </>
         ) : null}
 
         {!isLoading && hasSubmitted && !errorMessage && recommendations.length === 0 ? (
-          <div className="empty-state card">
+          <div className="empty-state empty-state-feature card">
             <strong>No recommendations returned</strong>
             <p>
               Try adding at least one skill, target role, and preferred location.
@@ -266,7 +319,7 @@ function DiscoverPage() {
         ) : null}
 
         {!isLoading && !hasSubmitted ? (
-          <div className="empty-state card">
+          <div className="empty-state empty-state-feature card">
             <strong>Your recommendations will appear here</strong>
             <p>
               Submit the form to call the backend and generate external search
@@ -279,14 +332,22 @@ function DiscoverPage() {
   );
 }
 
-function PreviewGroup({ label, values }: { label: string; values: string[] }) {
+function PreviewGroup({
+  label,
+  values,
+  tone,
+}: {
+  label: string;
+  values: string[];
+  tone: "teal" | "accent" | "neutral";
+}) {
   return (
     <div className="preview-group">
       <strong>{label}</strong>
       {values.length > 0 ? (
         <div className="chip-row">
           {values.map((value) => (
-            <span className="chip" key={value}>
+            <span className={`chip chip-${tone}`} key={value}>
               {value}
             </span>
           ))}
