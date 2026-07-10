@@ -1,14 +1,24 @@
 import type { CareerProgressReport } from "../types/report";
 
 import { apiBaseUrl } from "./config";
+import { readApiErrorMessage } from "./errors";
 import { ApiError } from "./opportunities";
 
 export async function getCareerProgressReport(): Promise<CareerProgressReport> {
-  const response = await fetch(`${apiBaseUrl}/reports/career-progress`, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${apiBaseUrl}/reports/career-progress`, {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+  } catch {
+    throw new ApiError(
+      "Unable to reach the JobTrackr backend. Start the FastAPI server and try again.",
+      0,
+    );
+  }
 
   if (!response.ok) {
     throw new ApiError(await readErrorMessage(response), response.status);
@@ -22,11 +32,5 @@ export function getCareerProgressReportHtmlUrl(): string {
 }
 
 async function readErrorMessage(response: Response): Promise<string> {
-  try {
-    const payload = (await response.json()) as { detail?: unknown };
-    if (typeof payload.detail === "string") return payload.detail;
-    return "Unable to load career progress report.";
-  } catch {
-    return "Unable to load career progress report.";
-  }
+  return readApiErrorMessage(response, "Unable to load career progress report.");
 }

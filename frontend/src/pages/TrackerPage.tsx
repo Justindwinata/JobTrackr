@@ -10,6 +10,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { friendlyErrorMessage } from "../api/errors";
 import { getTrackerSummary } from "../api/tracker";
 import type {
   TrackerDeadlineItem,
@@ -52,10 +53,13 @@ function TrackerPage() {
 
     try {
       setSummary(await getTrackerSummary());
-    } catch {
+    } catch (error) {
       setSummary(emptySummary);
       setErrorMessage(
-        "Unable to load tracker analytics. Start the backend server and try again.",
+        friendlyErrorMessage(
+          error,
+          "Unable to load tracker analytics. Start the backend server and try again.",
+        ),
       );
     } finally {
       setIsLoading(false);

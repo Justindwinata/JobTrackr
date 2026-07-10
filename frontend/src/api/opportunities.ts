@@ -7,6 +7,7 @@ import type {
 } from "../types/opportunity";
 
 import { apiBaseUrl } from "./config";
+import { readApiErrorMessage } from "./errors";
 
 export class ApiError extends Error {
   constructor(
@@ -64,13 +65,22 @@ export async function deleteOpportunity(id: number): Promise<void> {
 }
 
 async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
-  const response = await fetch(`${apiBaseUrl}${path}`, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...init.headers,
-    },
-  });
+  let response: Response;
+
+  try {
+    response = await fetch(`${apiBaseUrl}${path}`, {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...init.headers,
+      },
+    });
+  } catch {
+    throw new ApiError(
+      "Unable to reach the JobTrackr backend. Start the FastAPI server and try again.",
+      0,
+    );
+  }
 
   if (!response.ok) {
     throw new ApiError(await readErrorMessage(response), response.status);
@@ -84,12 +94,8 @@ async function request<T>(path: string, init: RequestInit = {}): Promise<T> {
 }
 
 async function readErrorMessage(response: Response): Promise<string> {
-  try {
-    const payload = (await response.json()) as { detail?: unknown };
-    if (typeof payload.detail === "string") return payload.detail;
-    return "Request failed. Please check the submitted opportunity details.";
-  } catch {
-    return "Request failed. Please try again.";
-  }
+  return readApiErrorMessage(
+    response,
+    "Request failed. Please check the submitted opportunity details.",
+  );
 }
-

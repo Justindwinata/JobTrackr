@@ -153,11 +153,7 @@ describe("SavedPage", () => {
 
     render(<SavedPage />);
 
-    expect(
-      await screen.findByText(
-        "Unable to load saved opportunities. Start the backend server and try again.",
-      ),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("Server error.")).toBeInTheDocument();
   });
 });
 

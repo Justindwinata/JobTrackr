@@ -19,6 +19,7 @@ import {
   listOpportunities,
   updateOpportunity,
 } from "../api/opportunities";
+import { friendlyErrorMessage } from "../api/errors";
 import type {
   EmploymentType,
   OpportunityPriority,
@@ -144,9 +145,12 @@ function SavedPage() {
 
     try {
       setOpportunities(await listOpportunities());
-    } catch {
+    } catch (error) {
       setErrorMessage(
-        "Unable to load saved opportunities. Start the backend server and try again.",
+        friendlyErrorMessage(
+          error,
+          "Unable to load saved opportunities. Start the backend server and try again.",
+        ),
       );
     } finally {
       setIsLoading(false);
@@ -173,9 +177,12 @@ function SavedPage() {
         `${opportunity.role_title} at ${opportunity.company_name} was saved manually.`,
       );
       setFormState(initialFormState);
-    } catch {
+    } catch (error) {
       setErrorMessage(
-        "Unable to save this opportunity. Check the backend server and submitted details.",
+        friendlyErrorMessage(
+          error,
+          "Unable to save this opportunity. Check the backend server and submitted details.",
+        ),
       );
     } finally {
       setIsSubmitting(false);
@@ -202,8 +209,10 @@ function SavedPage() {
       );
       setSelectedOpportunity(updated);
       setSuccessMessage(`${updated.role_title} was updated.`);
-    } catch {
-      setErrorMessage("Unable to update this opportunity.");
+    } catch (error) {
+      setErrorMessage(
+        friendlyErrorMessage(error, "Unable to update this opportunity."),
+      );
     } finally {
       setIsUpdating(false);
     }
@@ -227,8 +236,10 @@ function SavedPage() {
         setSelectedOpportunity(null);
       }
       setSuccessMessage(`${opportunity.role_title} was deleted.`);
-    } catch {
-      setErrorMessage("Unable to delete this opportunity.");
+    } catch (error) {
+      setErrorMessage(
+        friendlyErrorMessage(error, "Unable to delete this opportunity."),
+      );
     }
   }
 

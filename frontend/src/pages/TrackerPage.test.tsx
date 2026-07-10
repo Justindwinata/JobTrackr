@@ -47,11 +47,7 @@ describe("TrackerPage", () => {
 
     renderTrackerPage();
 
-    expect(
-      await screen.findByText(
-        "Unable to load tracker analytics. Start the backend server and try again.",
-      ),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("Backend unavailable.")).toBeInTheDocument();
   });
 });
 

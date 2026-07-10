@@ -66,11 +66,7 @@ describe("ReportsPage", () => {
 
     renderReportsPage();
 
-    expect(
-      await screen.findByText(
-        "Unable to load career progress report. Start the backend server and try again.",
-      ),
-    ).toBeInTheDocument();
+    expect(await screen.findByText("Backend unavailable.")).toBeInTheDocument();
   });
 });
 

@@ -9,6 +9,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
+import { friendlyErrorMessage } from "../api/errors";
 import {
   getCareerProgressReport,
   getCareerProgressReportHtmlUrl,
@@ -76,10 +77,13 @@ function ReportsPage() {
 
     try {
       setReport(await getCareerProgressReport());
-    } catch {
+    } catch (error) {
       setReport(emptyReport);
       setErrorMessage(
-        "Unable to load career progress report. Start the backend server and try again.",
+        friendlyErrorMessage(
+          error,
+          "Unable to load career progress report. Start the backend server and try again.",
+        ),
       );
     } finally {
       setIsLoading(false);

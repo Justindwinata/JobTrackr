@@ -10,6 +10,7 @@ import { FormEvent, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 
 import { apiBaseUrl } from "../api/config";
+import { friendlyErrorMessage, readApiErrorMessage } from "../api/errors";
 
 type NamedValue = {
   name: string;
@@ -94,15 +95,23 @@ function DiscoverPage() {
       });
 
       if (!response.ok) {
-        throw new Error("Recommendation request failed.");
+        throw new Error(
+          await readApiErrorMessage(
+            response,
+            "Unable to generate recommendations. Check your inputs and try again.",
+          ),
+        );
       }
 
       const payload = (await response.json()) as RecommendationResponse;
       setRecommendations(payload.recommendations);
-    } catch {
+    } catch (error) {
       setRecommendations([]);
       setErrorMessage(
-        "Unable to reach the JobTrackr backend. Start the FastAPI server and try again.",
+        friendlyErrorMessage(
+          error,
+          "Unable to reach the JobTrackr backend. Start the FastAPI server and try again.",
+        ),
       );
     } finally {
       setIsLoading(false);
