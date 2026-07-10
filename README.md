@@ -90,6 +90,18 @@ Reports is now a functional career progress reporting module:
 
 Reports do not use fake data, PDF export, scraping, external job board APIs, or AI-generated ranking.
 
+## JT-0007 Implementation
+
+JobTrackr has been stabilized for portfolio demos:
+
+- Added a product QA checklist and demo-readiness documentation.
+- Improved frontend API error parsing for backend validation and network failures.
+- Polished Saved Opportunities form guidance, validation feedback, badges, deadline display, and responsive card layout.
+- Polished Tracker and Reports empty distribution states so zero data never looks like fake analytics.
+- Improved keyboard accessibility with a skip link, mobile navigation controls, focus states, and responsive overflow safeguards.
+
+JT-0007 does not add scraping, fake listings, authentication, deployment, AI, PDF export, or cloud infrastructure.
+
 ## Repository Structure
 
 ```text
@@ -197,6 +209,18 @@ make frontend-build
 make lint
 make format-check
 ```
+
+## Demo Flow
+
+Use `docs/DEMO_SCRIPT.md` for a complete local demo walkthrough.
+
+Recommended screenshot flow:
+
+1. Home page product overview.
+2. Discover Jobs with generated external search links.
+3. Saved Opportunities with one manually entered fictional QA/demo opportunity.
+4. Application Tracker dashboard using the saved opportunity.
+5. Reports page and standalone HTML report.
 
 ## No-Scraping Statement
 

@@ -2,12 +2,15 @@
 
 This checklist supports JT-0007 stabilization and portfolio demo readiness.
 
+Use `docs/DEMO_SCRIPT.md` for the recommended presentation flow and fictional demo record.
+
 ## Pre-Flight
 
 - Confirm backend starts with `cd backend && python3 -m uvicorn jobtrackr_api.main:app --reload`.
 - Confirm frontend starts with `cd frontend && npm run dev`.
 - Confirm `make check` passes before demo recording or screenshots.
 - Confirm local SQLite data is either intentionally empty or intentionally seeded for demo.
+- Confirm any demo record is fictional and removable after screenshots.
 - Confirm the app never claims scraping, real-time job listings, job board API access, AI recommendations, or automated applications.
 
 ## Discover Jobs

@@ -124,3 +124,24 @@ All notable changes to JobTrackr will be documented in this file.
 
 - Reports are generated only from local user-entered saved opportunities and deterministic tracker analytics.
 - No fake records, fake analytics, scraping, external job board APIs, AI ranking, authentication, cloud database, PDF export, or drag-and-drop pipeline behavior were added.
+
+## 0.7.0 - 2026-07-11
+
+### Added
+
+- Added product QA stabilization checklist.
+- Added demo walkthrough documentation for local portfolio presentation.
+- Added shared frontend API error helpers for clearer validation and network feedback.
+- Added skip link and mobile navigation accessibility attributes.
+
+### Changed
+
+- Improved Saved Opportunities validation copy, helper text, priority badges, deadline visibility, and feedback live region.
+- Improved Tracker and Reports distribution empty states so zero data is clearly represented.
+- Improved global focus states, text wrapping, mobile form sizing, and overflow safeguards.
+- Updated documentation for demo readiness and remaining limitations.
+
+### Notes
+
+- JT-0007 is a stabilization and polish contract, not a new feature contract.
+- No scraping, real-time listings, external job board APIs, AI recommendations, authentication, cloud database, PDF export, deployment, or drag-and-drop pipeline behavior were added.

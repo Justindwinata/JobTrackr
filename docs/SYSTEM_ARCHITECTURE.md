@@ -219,4 +219,6 @@ JT-0005 changes Application Tracker from an honest future preview into a real da
 
 JT-0006 changes Reports from an honest future preview into a real reporting workflow. It generates JSON and standalone HTML reports from saved opportunities and tracker analytics only.
 
+JT-0007 improves product stability, UX consistency, error feedback, responsive behavior, and accessibility. It does not introduce new backend data sources or unsupported product claims.
+
 The backend CORS configuration allows the expected Vite development origin and adjacent Vite fallback ports for local development when the default frontend port is already occupied.

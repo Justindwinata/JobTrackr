@@ -53,7 +53,14 @@
 
 ## JT-0007 - Final Product Stabilization, UX Polish, and Demo Readiness
 
-- Stabilize core user flows for portfolio demos.
-- Improve accessibility and keyboard interaction coverage.
-- Add demo data seeding guidance without shipping fake records as real user data.
-- Prepare screenshot and walkthrough documentation.
+- Stabilize core user flows for portfolio demos. Completed.
+- Improve accessibility and keyboard interaction coverage. Completed.
+- Add demo data guidance without shipping fake records as real user data. Completed.
+- Prepare screenshot and walkthrough documentation. Completed.
+
+## JT-0008 - Screenshot Refresh, README Preview, and Portfolio Showcase Assets
+
+- Capture polished product screenshots.
+- Add README preview image references.
+- Prepare LinkedIn/GitHub showcase copy.
+- Review final portfolio positioning and repository presentation.

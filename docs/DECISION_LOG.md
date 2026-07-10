@@ -158,3 +158,23 @@ Reasoning:
 - HTML is simple to inspect, test, and open locally without deployment or extra rendering dependencies.
 - The report can still be printed by the browser if needed, while the product avoids claiming PDF export.
 - Safe escaping can be tested directly against user-entered saved opportunity fields.
+
+## 2026-07-11 - Prefer manual demo guidance over automatic seed data
+
+JT-0007 documents a manual demo workflow instead of adding an automatic demo seed command.
+
+Reasoning:
+
+- The local SQLite database can contain real user-entered records, so demo automation should not risk overwriting or mixing data.
+- Manual demo steps keep fictional portfolio records explicit and removable.
+- The product remains honest: demo entries are clearly created by the presenter, not imported listings.
+
+## 2026-07-11 - Stabilize UX without expanding product scope
+
+JT-0007 focuses on polish, validation feedback, accessibility, and demo readiness rather than new features.
+
+Reasoning:
+
+- The portfolio value now depends on reliability and presentation quality.
+- Error states and responsive behavior are part of product credibility.
+- Avoiding scope expansion keeps the no-scraping, no-AI, local-only architecture clear.
