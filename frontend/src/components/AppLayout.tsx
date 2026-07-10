@@ -1,15 +1,23 @@
-import { Menu, X } from "lucide-react";
+import {
+  BarChart3,
+  BookmarkCheck,
+  Compass,
+  Home,
+  LayoutDashboard,
+  Menu,
+  X,
+} from "lucide-react";
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
 
 import BrandLogo from "./BrandLogo";
 
 const navItems = [
-  { label: "Home", to: "/" },
-  { label: "Discover Jobs", to: "/discover" },
-  { label: "Saved Opportunities", to: "/saved" },
-  { label: "Application Tracker", to: "/tracker" },
-  { label: "Reports", to: "/reports" },
+  { label: "Home", to: "/", icon: Home },
+  { label: "Discover", to: "/discover", icon: Compass },
+  { label: "Saved", to: "/saved", icon: BookmarkCheck },
+  { label: "Tracker", to: "/tracker", icon: LayoutDashboard },
+  { label: "Reports", to: "/reports", icon: BarChart3 },
 ];
 
 function AppLayout() {
@@ -17,7 +25,34 @@ function AppLayout() {
 
   return (
     <div className="app-frame">
-      <header className="site-header">
+      <aside className="desktop-sidebar" aria-label="Product navigation">
+        <NavLink className="sidebar-brand" to="/" aria-label="JobTrackr home">
+          <BrandLogo compact />
+          <span>Career Suite</span>
+        </NavLink>
+        <nav className="sidebar-nav">
+          {navItems.map((item) => (
+            <NavLink
+              className={({ isActive }) =>
+                isActive ? "sidebar-link sidebar-link-active" : "sidebar-link"
+              }
+              key={item.to}
+              to={item.to}
+            >
+              <item.icon size={19} />
+              <span>{item.label}</span>
+            </NavLink>
+          ))}
+        </nav>
+        <div className="sidebar-card">
+          <span className="badge badge-accent">Local MVP</span>
+          <strong>Manual tracking only</strong>
+          <p>No scraping, no imported listings, no automated applications.</p>
+        </div>
+      </aside>
+
+      <div className="app-content">
+        <header className="site-header">
         <nav className="nav-shell" aria-label="Primary navigation">
           <NavLink
             className="brand-link"
@@ -48,6 +83,7 @@ function AppLayout() {
                 to={item.to}
                 onClick={() => setIsMenuOpen(false)}
               >
+                <item.icon size={17} />
                 {item.label}
               </NavLink>
             ))}
@@ -60,15 +96,18 @@ function AppLayout() {
       <footer className="site-footer">
         <div className="footer-shell">
           <BrandLogo compact />
-          <p>
-            JobTrackr generates safe job search links and prepares a manual
-            application tracking workflow. No scraping, no fake listings.
-          </p>
+          <div className="footer-meta">
+            <p>
+              JobTrackr generates safe job search links and stores manually saved
+              opportunities. No scraping, no fake listings.
+            </p>
+            <span>Built for local portfolio-grade career tracking.</span>
+          </div>
         </div>
       </footer>
+      </div>
     </div>
   );
 }
 
 export default AppLayout;
-
