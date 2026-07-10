@@ -1,6 +1,8 @@
 import { AlertCircle, ExternalLink, Loader2, Search } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
 
+import { apiBaseUrl } from "../api/config";
+
 type NamedValue = {
   name: string;
 };
@@ -27,9 +29,6 @@ type JobSearchRecommendation = {
 type RecommendationResponse = {
   recommendations: JobSearchRecommendation[];
 };
-
-const apiBaseUrl =
-  import.meta.env.VITE_API_BASE_URL?.replace(/\/$/, "") ?? "http://127.0.0.1:8000";
 
 function parseListInput(value: string) {
   return value
