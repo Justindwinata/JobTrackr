@@ -68,7 +68,11 @@ describe("SavedPage", () => {
     fillRequiredFields({ jobUrl: "not-a-url" });
     fireEvent.click(screen.getByRole("button", { name: "Save opportunity" }));
 
-    expect(await screen.findByText("Job URL must be a valid URL.")).toBeInTheDocument();
+    expect(
+      await screen.findByText(
+        "Job URL must be a valid http(s) URL copied from the job board.",
+      ),
+    ).toBeInTheDocument();
     expect(fetchMock).toHaveBeenCalledTimes(1);
   });
 

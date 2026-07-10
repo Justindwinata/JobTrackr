@@ -1306,6 +1306,12 @@ h2 {
   box-shadow: 0 0 0 4px rgba(33, 94, 97, 0.12);
 }
 
+.field-group small {
+  color: var(--color-muted);
+  font-size: 0.82rem;
+  line-height: 1.45;
+}
+
 .field-group em {
   margin-left: var(--space-2);
   color: var(--color-accent-strong);
@@ -1337,6 +1343,11 @@ h2 {
   background: var(--color-teal-soft);
   color: var(--color-brand);
   font-weight: 800;
+}
+
+.feedback-stack {
+  display: grid;
+  gap: var(--space-3);
 }
 
 .preview-panel {
@@ -1859,7 +1870,7 @@ h2 {
 
 .opportunity-details {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--space-3);
   margin: 0;
 }
@@ -1901,7 +1912,8 @@ h2 {
 }
 
 .status-pill,
-.source-pill {
+.source-pill,
+.priority-pill {
   display: inline-flex;
   min-height: 30px;
   align-items: center;
@@ -1914,6 +1926,26 @@ h2 {
 .source-pill {
   background: var(--color-teal-soft);
   color: var(--color-brand);
+}
+
+.priority-pill {
+  background: var(--color-soft);
+  color: var(--color-muted);
+}
+
+.priority-high {
+  background: var(--color-orange-soft);
+  color: var(--color-accent-strong);
+}
+
+.priority-medium {
+  background: var(--color-teal-soft);
+  color: var(--color-brand);
+}
+
+.priority-low {
+  background: #ece7e2;
+  color: #59636e;
 }
 
 .status-wishlist {

@@ -255,7 +255,9 @@ function SavedPage() {
     if (!formState.companyName.trim()) return "Company name is required.";
     if (!formState.roleTitle.trim()) return "Role title is required.";
     if (!formState.jobUrl.trim()) return "Job URL is required.";
-    if (!isValidUrl(formState.jobUrl)) return "Job URL must be a valid URL.";
+    if (!isValidUrl(formState.jobUrl)) {
+      return "Job URL must be a valid http(s) URL copied from the job board.";
+    }
     if (!formState.location.trim()) return "Location is required.";
     return "";
   }
@@ -353,6 +355,7 @@ function SavedPage() {
               value={formState.jobUrl}
               onChange={(jobUrl) => setFormState({ ...formState, jobUrl })}
               placeholder="https://example.com/jobs/frontend"
+              helperText="Paste the original job board URL. JobTrackr stores it only for your manual tracking."
               required
             />
             <TextField
@@ -392,6 +395,7 @@ function SavedPage() {
               label="Deadline"
               value={formState.deadline}
               onChange={(deadline) => setFormState({ ...formState, deadline })}
+              helperText="Optional application deadline or follow-up date."
               type="date"
             />
             <TextField
@@ -406,6 +410,7 @@ function SavedPage() {
               onChange={(requiredSkills) =>
                 setFormState({ ...formState, requiredSkills })
               }
+              helperText="Optional comma-separated skills for later review."
               placeholder="React, TypeScript, SQL"
             />
           </div>
@@ -538,6 +543,9 @@ function SavedPage() {
                   <span className="source-pill">
                     {labelFor(sourceOptions, opportunity.source)}
                   </span>
+                  <span className={`priority-pill priority-${opportunity.priority}`}>
+                    {labelFor(priorityOptions, opportunity.priority)} priority
+                  </span>
                 </div>
                 <div>
                   <h3>{opportunity.role_title}</h3>
@@ -555,6 +563,14 @@ function SavedPage() {
                   <div>
                     <dt>Updated</dt>
                     <dd>{formatDate(opportunity.updated_at)}</dd>
+                  </div>
+                  <div>
+                    <dt>Deadline</dt>
+                    <dd>
+                      {opportunity.deadline
+                        ? formatDate(opportunity.deadline)
+                        : "Not set"}
+                    </dd>
                   </div>
                 </dl>
                 {opportunity.required_skills.length > 0 ? (
@@ -663,7 +679,7 @@ function SavedPage() {
 
 function FeedbackMessages({ error, success }: { error: string; success: string }) {
   return (
-    <>
+    <div className="feedback-stack" aria-live="polite">
       {error ? (
         <div className="form-alert" role="alert">
           <AlertCircle size={18} />
@@ -677,7 +693,7 @@ function FeedbackMessages({ error, success }: { error: string; success: string }
           <span>{success}</span>
         </div>
       ) : null}
-    </>
+    </div>
   );
 }
 
@@ -686,6 +702,7 @@ function TextField({
   value,
   onChange,
   placeholder,
+  helperText,
   required = false,
   type = "text",
 }: {
@@ -693,6 +710,7 @@ function TextField({
   value: string;
   onChange: (value: string) => void;
   placeholder?: string;
+  helperText?: string;
   required?: boolean;
   type?: string;
 }) {
@@ -708,6 +726,7 @@ function TextField({
         placeholder={placeholder}
         type={type}
       />
+      {helperText ? <small>{helperText}</small> : null}
     </label>
   );
 }
@@ -746,8 +765,8 @@ function parseListInput(value: string) {
 
 function isValidUrl(value: string) {
   try {
-    new URL(value);
-    return true;
+    const url = new URL(value);
+    return ["http:", "https:"].includes(url.protocol);
   } catch {
     return false;
   }
