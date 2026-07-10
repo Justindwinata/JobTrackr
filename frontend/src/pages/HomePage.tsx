@@ -5,6 +5,9 @@ import {
   Compass,
   ExternalLink,
   FileSearch,
+  ListChecks,
+  MapPinned,
+  PieChart,
   ShieldCheck,
   Sparkles,
 } from "lucide-react";
@@ -33,6 +36,20 @@ const features = [
     meta: "Future workflow",
     icon: BriefcaseBusiness,
   },
+  {
+    title: "Manual Saved Opportunities",
+    description:
+      "Save roles you found yourself and keep company, source, URL, notes, and status together.",
+    meta: "SQLite backed",
+    icon: ListChecks,
+  },
+  {
+    title: "Reports",
+    description:
+      "Prepare progress summaries from real saved opportunities when reporting ships.",
+    meta: "Future reports",
+    icon: PieChart,
+  },
 ];
 
 const jobBoards = [
@@ -57,8 +74,12 @@ const workflow = [
     description: "Use generated links to search each platform manually.",
   },
   {
-    title: "Track later",
-    description: "Save opportunities and monitor progress when persistence is added.",
+    title: "Save opportunity",
+    description: "Manually store roles you actually found on external platforms.",
+  },
+  {
+    title: "Track application",
+    description: "Move saved opportunities through a practical status workflow.",
   },
 ];
 
@@ -75,14 +96,16 @@ function HomePage() {
 
   return (
     <main className="page-shell">
-      <section className="hero-section" aria-labelledby="product-title">
-        <div className="hero-copy stack-lg">
-          <span className="badge badge-teal">Student career operating system</span>
-          <h1 id="product-title">JobTrackr</h1>
+      <section className="home-hero" aria-labelledby="product-title">
+        <div className="home-hero-copy">
+          <span className="badge badge-teal">Career tracking suite for students</span>
+          <h1 id="product-title">
+            Your career growth, <span>tracked smarter</span>
+          </h1>
           <p className="hero-description">
             A job discovery and application tracking platform for students and
-            fresh graduates who want a structured path from search ideas to
-            application progress.
+            fresh graduates who want a structured path from search direction to
+            saved opportunity management.
           </p>
           <div className="button-row" aria-label="Primary product actions">
             <Link className="button button-primary" to="/discover">
@@ -93,35 +116,57 @@ function HomePage() {
               Explore scope
             </a>
           </div>
+          <div className="hero-proof-grid" aria-label="Product boundaries">
+            <div>
+              <strong>5</strong>
+              <span>search platforms</span>
+            </div>
+            <div>
+              <strong>0</strong>
+              <span>scraped listings</span>
+            </div>
+            <div>
+              <strong>Manual</strong>
+              <span>saved opportunities</span>
+            </div>
+          </div>
         </div>
-        <aside className="hero-dashboard card" aria-label="Current product scope">
-          <div className="dashboard-topline">
-            <span className="badge badge-accent">JT-0002</span>
-            <span>UI milestone</span>
+        <aside className="product-mockup card" aria-label="JobTrackr workflow preview">
+          <div className="mockup-topbar">
+            <span />
+            <span />
+            <span />
           </div>
-          <div className="dashboard-focus">
-            <FileSearch size={32} />
-            <strong>Generate search directions, not scraped listings.</strong>
+          <div className="mockup-header">
+            <div>
+              <span className="eyebrow">Pipeline preview</span>
+              <strong>Frontend Developer</strong>
+            </div>
+            <span className="badge badge-accent">Wishlist</span>
           </div>
-          <div className="dashboard-list" aria-label="Supported search sources">
-            {jobBoards.map((board, index) => (
-              <span
-                className={
-                  index === activeBoardIndex
-                    ? "dashboard-source dashboard-source-active"
-                    : "dashboard-source"
-                }
-                key={board}
-              >
-                {board}
-              </span>
+          <div className="mockup-columns">
+            {["Discover", "Saved", "Interview"].map((stage, index) => (
+              <div className="mockup-column" key={stage}>
+                <span>{stage}</span>
+                <div
+                  className={
+                    index === activeBoardIndex % 3
+                      ? "mockup-card active"
+                      : "mockup-card"
+                  }
+                >
+                  <MapPinned size={16} />
+                  <strong>{jobBoards[index + 1] ?? "LinkedIn"}</strong>
+                  <small>Manual workflow</small>
+                </div>
+              </div>
             ))}
           </div>
         </aside>
       </section>
 
-      <section className="logo-strip" aria-label="Supported job boards">
-        <span>Safe external search links for</span>
+      <section className="board-strip" aria-label="Supported job boards">
+        <span>Safe external search links</span>
         <div>
           {jobBoards.map((board) => (
             <strong key={board}>{board}</strong>
@@ -138,13 +183,13 @@ function HomePage() {
           <span className="eyebrow">Product foundation</span>
           <h2 id="capabilities-title">Built for a credible job search workflow</h2>
           <p>
-            JobTrackr starts with deterministic search guidance and grows toward
-            manual opportunity tracking without claiming integrations that do not
-            exist yet.
+            JobTrackr combines deterministic search guidance with manual saved
+            opportunities, so the product feels useful without claiming external
+            integrations that do not exist.
           </p>
         </div>
 
-        <div className="feature-grid" aria-label="Product capabilities">
+        <div className="feature-matrix" aria-label="Product capabilities">
           {features.map((feature) => (
             <article className="feature-card" key={feature.title}>
               <feature.icon className="feature-icon" size={24} />
@@ -167,9 +212,8 @@ function HomePage() {
             <h2 id="workflow-title">From search intent to application discipline</h2>
           </div>
           <p>
-            JT-0002 focuses on a credible discovery experience. Later contracts
-            will add manual saving, tracker persistence, and reporting from real
-            user-entered data.
+            JT-0004 presents the workflow as a real product surface while keeping
+            every record user-controlled and every external search manual.
           </p>
         </div>
 
@@ -184,7 +228,7 @@ function HomePage() {
         </div>
       </section>
 
-      <section className="credibility-section" aria-labelledby="trust-title">
+      <section className="trust-panel" aria-labelledby="trust-title">
         <div className="credibility-copy">
           <span className="eyebrow">Product credibility</span>
           <h2 id="trust-title">Honest software boundaries from day one</h2>
@@ -199,6 +243,11 @@ function HomePage() {
             <ShieldCheck size={24} />
             <strong>No scraping</strong>
             <span>Search links only</span>
+          </div>
+          <div>
+            <FileSearch size={24} />
+            <strong>No fake listings</strong>
+            <span>User-entered records</span>
           </div>
           <div>
             <BarChart3 size={24} />

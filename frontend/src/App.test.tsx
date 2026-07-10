@@ -7,7 +7,9 @@ describe("App", () => {
     render(<App />);
 
     expect(
-      screen.getByRole("heading", { name: "JobTrackr" }),
+      screen.getByRole("heading", {
+        name: /Your career growth, tracked smarter/i,
+      }),
     ).toBeInTheDocument();
     expect(screen.getByLabelText("Primary navigation")).toBeInTheDocument();
     expect(screen.getByText("Smart Job Discovery")).toBeInTheDocument();
