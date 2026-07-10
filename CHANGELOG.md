@@ -39,3 +39,23 @@ All notable changes to JobTrackr will be documented in this file.
 - Future pages do not show fake records or analytics.
 - Discover Jobs generates external search links only.
 - No scraping, real-time listing ingestion, authentication, database, deployment, or AI/LLM features were added.
+
+## 0.3.0 - 2026-07-10
+
+### Added
+
+- Added saved opportunity Pydantic models and enums.
+- Added local SQLite persistence for manually saved opportunities.
+- Added saved opportunity repository with create, list, detail, update, and delete behavior.
+- Added `POST /opportunities`, `GET /opportunities`, `GET /opportunities/{id}`, `PUT /opportunities/{id}`, and `DELETE /opportunities/{id}`.
+- Added functional Saved Opportunities frontend page.
+- Added manual save form with validation and API integration.
+- Added saved opportunity list, status/source badges, search, status filtering, edit status/notes, and delete action.
+- Added Discover Jobs CTA to save matching jobs manually.
+- Added backend and frontend tests for saved opportunities.
+
+### Notes
+
+- Saved opportunities are manually entered by users.
+- SQLite is local-only and stored under an ignored `backend/data/` path.
+- JobTrackr still does not scrape, import, or ingest real-time job listings.

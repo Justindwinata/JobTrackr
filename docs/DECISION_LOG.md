@@ -68,3 +68,33 @@ Reasoning:
 - This validates the frontend-to-backend contract.
 - It keeps the UI milestone useful without adding database, auth, scraping, or AI scope.
 - It makes the no-scraping boundary visible in the user experience.
+
+## 2026-07-10 - Use SQLite for local saved opportunities
+
+JT-0003 introduces SQLite under `backend/data/jobtrackr.sqlite3`.
+
+Reasoning:
+
+- SQLite is enough for a portfolio-stage local tracker.
+- It keeps setup simple and avoids cloud/database operational scope.
+- It provides real persistence for manually entered opportunities.
+
+## 2026-07-10 - Keep saved opportunities manual
+
+Saved opportunities are created from user-entered form data only.
+
+Reasoning:
+
+- This preserves the no-scraping product boundary.
+- It avoids third-party job board API claims.
+- It makes the user responsible for deciding which external jobs are worth tracking.
+
+## 2026-07-10 - Start tracker management with status and notes editing
+
+JT-0003 supports editing status and notes before building a full tracker dashboard.
+
+Reasoning:
+
+- Status and notes are the highest-value fields for early application tracking.
+- A narrow edit foundation keeps the workflow useful without overbuilding analytics.
+- Future contracts can expand from real saved opportunity data.

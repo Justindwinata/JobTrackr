@@ -40,6 +40,18 @@ The frontend now includes a professional multi-page product UI:
 
 The future pages are intentionally honest placeholders. They do not show fake saved jobs, fake application data, or fake reports.
 
+## JT-0003 Implementation
+
+Saved Opportunities is now the first real tracker feature:
+
+- SQLite-backed local persistence under `backend/data/jobtrackr.sqlite3`.
+- CRUD API for manually saved opportunities.
+- Functional Saved Opportunities page with manual save form.
+- Saved opportunity list with source/status badges, search, status filter, edit status/notes, and delete action.
+- Discover Jobs CTA that guides users to save matching jobs manually.
+
+Saved opportunities are user-entered records only. JobTrackr still does not scrape job boards or import third-party listings.
+
 ## Repository Structure
 
 ```text
@@ -79,6 +91,25 @@ curl -X POST http://127.0.0.1:8000/job-search/recommendations \
   }'
 ```
 
+Saved Opportunities endpoints:
+
+```bash
+curl -X POST http://127.0.0.1:8000/opportunities \
+  -H "Content-Type: application/json" \
+  -d '{
+    "company_name": "Acme Indonesia",
+    "role_title": "Frontend Developer",
+    "source": "linkedin",
+    "job_url": "https://www.linkedin.com/jobs/view/123",
+    "location": "Jakarta",
+    "status": "wishlist",
+    "priority": "high",
+    "required_skills": ["React", "TypeScript"]
+  }'
+
+curl http://127.0.0.1:8000/opportunities
+```
+
 ## Frontend
 
 Run the app locally:
@@ -112,6 +143,7 @@ Run focused checks:
 make backend-test
 make frontend-test
 make frontend-build
+make lint
 make format-check
 ```
 

@@ -35,6 +35,19 @@ JT-0001 implements only the project foundation:
 - Basic tests and tooling.
 - Product documentation.
 
+## JT-0003 Scope
+
+JT-0003 adds the first persistence-backed tracker feature:
+
+- Manual saved opportunity form.
+- Local SQLite persistence.
+- Saved opportunity CRUD API.
+- Saved opportunity list and management UI.
+- Status, priority, source, required skills, notes, and URL fields.
+- Discover Jobs CTA into manual saving.
+
+Saved Opportunities remains manual by design. The system does not import jobs from external platforms.
+
 ## Out of Scope
 
 JobTrackr does not:
@@ -50,4 +63,3 @@ JobTrackr does not:
 ## External Search Link Behavior
 
 The system builds search URLs from selected roles, skills, and locations. A user opens the generated links manually on external platforms. JobTrackr does not fetch, copy, rank, or store job listings from those platforms.
-

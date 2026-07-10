@@ -21,12 +21,20 @@
 
 ## JT-0003 - Saved Opportunities Foundation and Manual Job Saving Workflow
 
-- Add persistence foundation.
-- Let users manually save opportunities found through external search links.
-- Store source URL, company, role, location, notes, and status.
-- Keep saving manual and user-controlled.
+- Add persistence foundation. Completed.
+- Let users manually save opportunities found through external search links. Completed.
+- Store source URL, company, role, location, notes, and status. Completed.
+- Keep saving manual and user-controlled. Completed.
+- Add saved opportunity list, edit status/notes, delete, search, and filters. Completed.
 
-## JT-0004 - Analytics and Reporting Foundation
+## JT-0004 - Application Tracker Dashboard and Status Pipeline Analytics
+
+- Build dashboard views from real saved opportunities.
+- Add status pipeline counts.
+- Add simple tracker analytics by source, role, location, and status.
+- Keep reports grounded in local user-entered data.
+
+## JT-0005 - Reports and Export Foundation
 
 - Show application status counts.
 - Add simple progress reports.
