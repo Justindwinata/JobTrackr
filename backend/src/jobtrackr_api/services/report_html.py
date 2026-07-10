@@ -175,7 +175,7 @@ def _summary_cards(cards: list[TrackerSummaryCard]) -> str:
 
 
 def _distribution(items: list[TrackerDistributionItem]) -> str:
-    if not items:
+    if not items or sum(item.count for item in items) == 0:
         return '<div class="empty">No distribution data yet.</div>'
 
     return "".join(

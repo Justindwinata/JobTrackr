@@ -279,23 +279,29 @@ function DistributionPanel({
   title: string;
   items: TrackerDistributionItem[];
 }) {
+  const total = items.reduce((sum, item) => sum + item.count, 0);
+
   return (
     <article className="distribution-panel card">
       <h3>{title}</h3>
-      <div className="distribution-list">
-        {items.map((item) => (
-          <div className="distribution-row" key={item.key}>
-            <div>
-              <span>{item.label}</span>
-              <strong>{item.count}</strong>
+      {total > 0 ? (
+        <div className="distribution-list">
+          {items.map((item) => (
+            <div className="distribution-row" key={item.key}>
+              <div>
+                <span>{item.label}</span>
+                <strong>{item.count}</strong>
+              </div>
+              <div className="distribution-track" aria-hidden="true">
+                <span style={{ width: `${item.percentage}%` }} />
+              </div>
+              <small>{item.percentage}%</small>
             </div>
-            <div className="distribution-track" aria-hidden="true">
-              <span style={{ width: `${item.percentage}%` }} />
-            </div>
-            <small>{item.percentage}%</small>
-          </div>
-        ))}
-      </div>
+          ))}
+        </div>
+      ) : (
+        <p className="distribution-empty">No saved opportunity data yet.</p>
+      )}
     </article>
   );
 }
