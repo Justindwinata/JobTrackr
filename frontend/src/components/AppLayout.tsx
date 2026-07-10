@@ -25,6 +25,9 @@ function AppLayout() {
 
   return (
     <div className="app-frame">
+      <a className="skip-link" href="#app-main">
+        Skip to main content
+      </a>
       <aside className="desktop-sidebar" aria-label="Product navigation">
         <NavLink className="sidebar-brand" to="/" aria-label="JobTrackr home">
           <BrandLogo compact />
@@ -66,6 +69,7 @@ function AppLayout() {
           <button
             className="nav-toggle"
             type="button"
+            aria-controls="mobile-navigation"
             aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
             aria-expanded={isMenuOpen}
             onClick={() => setIsMenuOpen((current) => !current)}
@@ -73,7 +77,10 @@ function AppLayout() {
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
           </button>
 
-          <div className={isMenuOpen ? "nav-links nav-links-open" : "nav-links"}>
+          <div
+            className={isMenuOpen ? "nav-links nav-links-open" : "nav-links"}
+            id="mobile-navigation"
+          >
             {navItems.map((item) => (
               <NavLink
                 className={({ isActive }) =>
@@ -91,7 +98,9 @@ function AppLayout() {
         </nav>
       </header>
 
-      <Outlet />
+      <div id="app-main" tabIndex={-1}>
+        <Outlet />
+      </div>
 
       <footer className="site-footer">
         <div className="footer-shell">

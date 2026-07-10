@@ -40,10 +40,15 @@
   box-sizing: border-box;
 }
 
+html {
+  overflow-x: hidden;
+}
+
 body {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 a {
@@ -51,11 +56,59 @@ a {
   text-decoration: none;
 }
 
+a:focus-visible {
+  outline: 3px solid rgba(255, 158, 32, 0.4);
+  outline-offset: 3px;
+}
+
 button,
 input,
 textarea,
 select {
   font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+}
+
+img,
+svg {
+  max-width: 100%;
+}
+
+p,
+span,
+strong,
+small,
+dd,
+dt,
+h1,
+h2,
+h3 {
+  overflow-wrap: anywhere;
+}
+
+.skip-link {
+  position: fixed;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 100;
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-sm);
+  background: var(--color-accent);
+  color: var(--color-neutral);
+  font-weight: 900;
+  transform: translateY(-160%);
+  transition: transform 160ms ease;
+}
+
+.skip-link:focus {
+  transform: translateY(0);
 }
 
 .app-frame {
@@ -67,6 +120,10 @@ select {
   width: 100%;
   min-width: 0;
   margin-left: var(--sidebar-width);
+}
+
+#app-main:focus {
+  outline: none;
 }
 
 .desktop-sidebar {
@@ -560,11 +617,14 @@ h2 {
   align-items: center;
   justify-content: center;
   gap: var(--space-2);
+  max-width: 100%;
   min-height: 44px;
   padding: 0 var(--space-5);
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
   font-weight: 800;
+  text-align: center;
+  white-space: normal;
   transition:
     transform 180ms ease,
     border-color 180ms ease,
@@ -602,6 +662,7 @@ h2 {
 }
 
 .card {
+  min-width: 0;
   border: 1px solid var(--color-line);
   border-radius: var(--radius-md);
   background: var(--color-surface);
@@ -1994,6 +2055,11 @@ h2 {
   background: var(--color-teal-soft);
 }
 
+.icon-button:focus-visible {
+  outline: 3px solid rgba(255, 158, 32, 0.35);
+  outline-offset: 3px;
+}
+
 .icon-button.danger {
   color: #9b3b3b;
 }
@@ -2665,6 +2731,12 @@ h2 {
 
   .page-shell {
     width: min(100% - 20px, 480px);
+  }
+
+  input,
+  textarea,
+  select {
+    font-size: 16px;
   }
 
   .hero-section {
