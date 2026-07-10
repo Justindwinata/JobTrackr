@@ -3,6 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from jobtrackr_api import __version__
 from jobtrackr_api.api.job_search import router as job_search_router
+from jobtrackr_api.api.opportunities import router as opportunities_router
 
 app = FastAPI(
     title="JobTrackr API",
@@ -22,6 +23,7 @@ app.add_middleware(
 )
 
 app.include_router(job_search_router)
+app.include_router(opportunities_router)
 
 
 @app.get("/health", tags=["System"])
