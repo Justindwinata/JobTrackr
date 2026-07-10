@@ -20,8 +20,10 @@ coverage/
 .env
 .env.*
 
+# Local app data
+backend/data/
+
 # Editors and OS
 .DS_Store
 .idea/
 .vscode/
-
