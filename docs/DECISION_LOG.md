@@ -118,3 +118,23 @@ Reasoning:
 - Local QA should still work when another dev server owns the default Vite port.
 - The allowance is narrow to localhost and Vite fallback-style ports.
 - This preserves the production-facing product boundary because no deployment or external origin support is introduced.
+
+## 2026-07-11 - Derive tracker analytics from saved opportunities only
+
+JT-0005 adds Application Tracker analytics based on manually saved opportunities stored in SQLite.
+
+Reasoning:
+
+- Tracker metrics should represent real user-entered records, not demo data.
+- The application remains honest about not scraping job boards or ingesting third-party listings.
+- A deterministic analytics service keeps calculations testable and easy to extend for future reports.
+
+## 2026-07-11 - Defer drag-and-drop pipeline updates
+
+The tracker dashboard groups opportunities by status but does not implement drag-and-drop status changes yet.
+
+Reasoning:
+
+- Saved Opportunities already supports editing status and notes.
+- A read-focused dashboard reduces interaction risk while analytics contracts stabilize.
+- Drag-and-drop can be added later with explicit persistence and accessibility handling.

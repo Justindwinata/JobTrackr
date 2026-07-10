@@ -38,13 +38,14 @@
 
 ## JT-0005 - Application Tracker Dashboard and Status Pipeline Analytics
 
-- Build dashboard views from real saved opportunities.
-- Add status pipeline counts.
-- Add simple tracker analytics by source, role, location, and status.
-- Keep reports grounded in local user-entered data.
+- Build dashboard views from real saved opportunities. Completed.
+- Add status pipeline groups and counts. Completed.
+- Add tracker analytics by status, source, and priority. Completed.
+- Add upcoming deadline, overdue opportunity, and recent activity summaries. Completed.
+- Keep analytics grounded in local user-entered data. Completed.
 
 ## JT-0006 - Reports and Export Foundation
 
-- Show application status counts.
-- Add simple progress reports.
-- Prepare export-friendly summaries.
+- Build report generation from tracker and saved opportunity data.
+- Add export-friendly HTML summaries.
+- Add report preview and saved report workflow foundation.

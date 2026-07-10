@@ -80,3 +80,25 @@ All notable changes to JobTrackr will be documented in this file.
 
 - No fake listings, fake saved opportunities, or fake analytics were added.
 - JobTrackr remains a no-scraping, user-controlled workflow.
+
+## 0.5.0 - 2026-07-11
+
+### Added
+
+- Added application tracker analytics response models.
+- Added deterministic tracker analytics service derived from saved opportunities.
+- Added `GET /tracker/summary` endpoint.
+- Added functional Application Tracker dashboard UI.
+- Added overview cards, status pipeline, status/source/priority distributions, deadline panels, overdue items, and recent activity.
+- Added backend tests for tracker calculations and API output.
+- Added frontend tracker API client and Application Tracker page tests.
+
+### Changed
+
+- Replaced the Application Tracker future-preview page with a real dashboard powered by local SQLite saved opportunity data.
+- Updated product documentation to describe the tracker dashboard and no-fake-analytics boundary.
+
+### Notes
+
+- Tracker analytics are derived only from manually saved opportunities.
+- No fake records, fake analytics, scraping, AI recommendations, authentication, cloud database, report generation, or drag-and-drop pipeline behavior were added.

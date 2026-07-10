@@ -65,6 +65,18 @@ The frontend now follows the Stitch-inspired SaaS career suite direction:
 
 The redesign does not add fake listings, fake analytics, scraping, AI recommendations, authentication, deployment, or third-party job board API integrations.
 
+## JT-0005 Implementation
+
+Application Tracker is now a functional dashboard powered by real saved opportunities:
+
+- `GET /tracker/summary` returns deterministic tracker analytics derived from local SQLite records.
+- Overview cards summarize total saved, active applications, interviews, offers, rejected records, deadlines, and overdue items.
+- Status pipeline groups saved opportunities by Wishlist, Applied, Screening, Interview, Offer, Rejected, and Archived.
+- Analytics show status, source, and priority distributions from manually saved opportunities.
+- Deadline and recent activity sections help users review upcoming work and recently updated records.
+
+The tracker does not fabricate analytics. Empty states stay honest when no saved opportunities exist.
+
 ## Repository Structure
 
 ```text
@@ -123,6 +135,12 @@ curl -X POST http://127.0.0.1:8000/opportunities \
 curl http://127.0.0.1:8000/opportunities
 ```
 
+Tracker summary endpoint:
+
+```bash
+curl http://127.0.0.1:8000/tracker/summary
+```
+
 ## Frontend
 
 Run the app locally:
@@ -162,4 +180,4 @@ make format-check
 
 ## No-Scraping Statement
 
-JobTrackr does not scrape LinkedIn, JobStreet Indonesia, Glints, Karir.com, Dealls, or any other third-party platform. The current backend only generates deterministic external search URLs from user-selected inputs. Users open those links manually in their browser.
+JobTrackr does not scrape LinkedIn, JobStreet Indonesia, Glints, Karir.com, Dealls, or any other third-party platform. The backend generates deterministic external search URLs from user-selected inputs, stores only user-entered saved opportunities, and derives tracker analytics only from those local records. Users open external job board links manually in their browser.

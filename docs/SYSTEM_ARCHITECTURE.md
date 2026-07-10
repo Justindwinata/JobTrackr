@@ -10,7 +10,9 @@ flowchart LR
     Frontend --> API["FastAPI Backend"]
     API --> Domain["Recommendation Domain Service"]
     API --> Repo["Saved Opportunity Repository"]
+    API --> Tracker["Tracker Analytics Service"]
     Repo --> SQLite["Local SQLite Database"]
+    Tracker --> Repo
     Domain --> Links["External Search URLs"]
     User --> Boards["External Job Boards"]
     Links --> Boards
@@ -38,6 +40,7 @@ Current endpoints:
 - `GET /opportunities/{opportunity_id}`
 - `PUT /opportunities/{opportunity_id}`
 - `DELETE /opportunities/{opportunity_id}`
+- `GET /tracker/summary`
 
 ## Frontend
 
@@ -53,7 +56,8 @@ Current modules:
 - `pages/HomePage.tsx` renders the professional product home experience.
 - `pages/DiscoverPage.tsx` calls the backend recommendation endpoint and renders external search links.
 - `pages/SavedPage.tsx` renders the manual save workflow and saved opportunity management UI.
-- `pages/TrackerPage.tsx` and `pages/ReportsPage.tsx` render polished future-feature previews with clearly labeled non-data skeletons.
+- `pages/TrackerPage.tsx` renders the functional tracker dashboard from saved opportunity analytics.
+- `pages/ReportsPage.tsx` renders a polished future-feature preview with clearly labeled non-data skeletons.
 - `styles.css` provides the brand system, layout, responsive rules, cards, buttons, badges, forms, and result states.
 - `App.test.tsx` and page tests verify core product content and Discover Jobs behavior.
 
@@ -94,6 +98,43 @@ The current persistence scope is intentionally narrow:
 
 No cloud database or authentication layer exists yet.
 
+## Application Tracker Analytics
+
+JT-0005 adds deterministic tracker analytics derived only from saved opportunities stored in SQLite.
+
+The tracker service computes:
+
+- Total opportunities.
+- Active and closed opportunity counts.
+- Counts for applied, interview, offer, rejected, upcoming deadline, and overdue states.
+- Status, source, and priority distributions.
+- Pipeline groups by saved opportunity status.
+- Upcoming deadlines and overdue opportunities.
+- Recently updated opportunities.
+
+No analytics are generated from fake records, external job board scraping, or third-party APIs.
+
+```mermaid
+sequenceDiagram
+    participant U as User
+    participant F as Frontend
+    participant A as FastAPI
+    participant T as Tracker Service
+    participant R as Repository
+    participant D as SQLite
+
+    U->>F: Open Application Tracker
+    F->>A: GET /tracker/summary
+    A->>T: Request tracker summary
+    T->>R: List saved opportunities
+    R->>D: SELECT saved_opportunities
+    D-->>R: Local saved records
+    R-->>T: Saved opportunities
+    T-->>A: Deterministic analytics
+    A-->>F: Summary, distributions, pipeline, deadlines, recent activity
+    F-->>U: Render tracker dashboard
+```
+
 ## Saved Opportunity Flow
 
 ```mermaid
@@ -123,5 +164,7 @@ JT-0002 keeps future pages honest. Saved Opportunities, Application Tracker, and
 JT-0003 changes Saved Opportunities from placeholder to real local persistence. It still only stores information manually entered by the user.
 
 JT-0004 changes the frontend presentation layer. It redesigns the product shell, Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports using the Stitch-inspired SaaS direction while preserving the backend contracts and no-scraping boundary.
+
+JT-0005 changes Application Tracker from an honest future preview into a real dashboard. It only summarizes manually saved opportunities already stored in SQLite.
 
 The backend CORS configuration allows the expected Vite development origin and adjacent Vite fallback ports for local development when the default frontend port is already occupied.
