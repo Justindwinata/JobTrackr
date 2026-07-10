@@ -1,5 +1,6 @@
 import { AlertCircle, ExternalLink, Loader2, Search } from "lucide-react";
 import { FormEvent, useMemo, useState } from "react";
+import { Link } from "react-router-dom";
 
 import { apiBaseUrl } from "../api/config";
 
@@ -185,10 +186,15 @@ function DiscoverPage() {
             <span className="eyebrow">Recommendations</span>
             <h2 id="results-title">Generated external search links</h2>
           </div>
-          <p>
-            Results come from the deterministic backend contract. They are
-            search directions only, not real-time job listings.
-          </p>
+          <div className="results-copy">
+            <p>
+              Results come from the deterministic backend contract. They are
+              search directions only, not real-time job listings.
+            </p>
+            <Link className="button button-secondary" to="/saved">
+              Found a matching job? Save it manually
+            </Link>
+          </div>
         </div>
 
         {isLoading ? (

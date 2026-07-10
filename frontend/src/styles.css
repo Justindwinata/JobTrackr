@@ -1135,6 +1135,215 @@ h2 {
   line-height: 1.7;
 }
 
+.saved-panel {
+  position: sticky;
+  top: 92px;
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-6);
+}
+
+.saved-panel strong {
+  color: var(--color-neutral);
+  font-size: 1.35rem;
+}
+
+.saved-panel p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.saved-list-section {
+  padding-top: var(--space-16);
+}
+
+.saved-toolbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 260px;
+  gap: var(--space-4);
+  align-items: end;
+  margin-bottom: var(--space-5);
+  padding: var(--space-5);
+}
+
+.input-with-icon {
+  position: relative;
+}
+
+.input-with-icon svg {
+  position: absolute;
+  top: 50%;
+  left: var(--space-4);
+  color: var(--color-muted);
+  transform: translateY(-50%);
+}
+
+.input-with-icon input {
+  padding-left: 44px;
+}
+
+.opportunity-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5);
+}
+
+.opportunity-card {
+  display: grid;
+  gap: var(--space-5);
+  padding: var(--space-6);
+}
+
+.opportunity-card-header,
+.opportunity-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  align-items: center;
+}
+
+.opportunity-card h3 {
+  margin: 0 0 var(--space-1);
+  color: var(--color-neutral);
+  font-size: 1.35rem;
+}
+
+.opportunity-card p {
+  margin: 0;
+  color: var(--color-muted);
+  font-weight: 800;
+}
+
+.opportunity-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  margin: 0;
+}
+
+.opportunity-details div {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.opportunity-details dt {
+  color: var(--color-muted);
+  font-size: 0.78rem;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+
+.opportunity-details dd {
+  margin: 0;
+  color: var(--color-neutral);
+  font-weight: 800;
+}
+
+.status-pill,
+.source-pill {
+  display: inline-flex;
+  min-height: 30px;
+  align-items: center;
+  padding: 0 10px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 900;
+}
+
+.source-pill {
+  background: var(--color-teal-soft);
+  color: var(--color-brand);
+}
+
+.status-wishlist {
+  background: #ece7e2;
+  color: #59636e;
+}
+
+.status-applied,
+.status-screening,
+.status-interview {
+  background: var(--color-orange-soft);
+  color: var(--color-accent-strong);
+}
+
+.status-offer {
+  background: var(--color-teal-soft);
+  color: var(--color-brand);
+}
+
+.status-rejected,
+.status-archived {
+  background: #efe3e3;
+  color: #9b3b3b;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(33, 94, 97, 0.18);
+  border-radius: var(--radius-sm);
+  background: var(--color-surface);
+  color: var(--color-brand);
+  cursor: pointer;
+  transition:
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.icon-button:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-brand);
+  background: var(--color-teal-soft);
+}
+
+.icon-button.danger {
+  color: #9b3b3b;
+}
+
+.icon-button.danger:hover {
+  border-color: #9b3b3b;
+  background: #f6eaea;
+}
+
+.edit-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1fr);
+  gap: var(--space-8);
+  margin-top: var(--space-5);
+  padding: var(--space-6);
+}
+
+.edit-panel h2 {
+  margin: var(--space-2) 0;
+  font-size: 1.8rem;
+}
+
+.edit-panel p {
+  margin: 0;
+  color: var(--color-muted);
+  line-height: 1.7;
+}
+
+.edit-form {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.results-copy {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.results-copy p {
+  margin: 0;
+}
+
 @keyframes spin {
   to {
     transform: rotate(360deg);
@@ -1239,11 +1448,18 @@ h2 {
   }
 
   .preview-panel,
-  .saved-empty {
+  .saved-empty,
+  .saved-panel {
     position: static;
   }
 
   .recommendation-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .saved-toolbar,
+  .opportunity-grid,
+  .edit-panel {
     grid-template-columns: 1fr;
   }
 }
@@ -1297,6 +1513,10 @@ h2 {
   }
 
   .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .opportunity-details {
     grid-template-columns: 1fr;
   }
 

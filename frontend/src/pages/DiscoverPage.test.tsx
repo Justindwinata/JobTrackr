@@ -1,4 +1,5 @@
 import { fireEvent, render, screen, waitFor } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
 import DiscoverPage from "./DiscoverPage";
@@ -10,7 +11,7 @@ afterEach(() => {
 describe("DiscoverPage", () => {
   it("validates required input before calling the backend", async () => {
     const fetchMock = vi.spyOn(globalThis, "fetch");
-    render(<DiscoverPage />);
+    renderDiscoverPage();
 
     fireEvent.change(screen.getByLabelText("Skills"), { target: { value: "" } });
     fireEvent.click(screen.getByRole("button", { name: /generate recommendations/i }));
@@ -49,7 +50,7 @@ describe("DiscoverPage", () => {
       }),
     } as Response);
 
-    render(<DiscoverPage />);
+    renderDiscoverPage();
 
     fireEvent.click(screen.getByRole("button", { name: /generate recommendations/i }));
 
@@ -68,3 +69,10 @@ describe("DiscoverPage", () => {
   });
 });
 
+function renderDiscoverPage() {
+  render(
+    <MemoryRouter>
+      <DiscoverPage />
+    </MemoryRouter>,
+  );
+}
