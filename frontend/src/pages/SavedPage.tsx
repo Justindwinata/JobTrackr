@@ -1,6 +1,8 @@
 import {
   AlertCircle,
   BookmarkPlus,
+  BriefcaseBusiness,
+  CalendarDays,
   CheckCircle2,
   ExternalLink,
   Loader2,
@@ -119,6 +121,22 @@ function SavedPage() {
       return matchesStatus && matchesSearch;
     });
   }, [opportunities, searchQuery, statusFilter]);
+
+  const savedMetrics = useMemo(
+    () => ({
+      active: opportunities.filter(
+        (opportunity) =>
+          !["archived", "rejected"].includes(opportunity.status),
+      ).length,
+      interviews: opportunities.filter(
+        (opportunity) => opportunity.status === "interview",
+      ).length,
+      highPriority: opportunities.filter(
+        (opportunity) => opportunity.priority === "high",
+      ).length,
+    }),
+    [opportunities],
+  );
 
   async function loadOpportunities() {
     setIsLoading(true);
@@ -253,17 +271,37 @@ function SavedPage() {
     <main className="page-shell">
       <section className="saved-hero" aria-labelledby="saved-title">
         <div>
-          <span className="badge badge-accent">JT-0003 active workflow</span>
+          <span className="badge badge-accent">Manual opportunity workspace</span>
           <h1 id="saved-title">Save opportunities manually</h1>
           <p>
             After opening a generated external search link, return here and save
             the opportunity yourself. JobTrackr stores only the details you enter.
           </p>
+          <div className="saved-hero-metrics" aria-label="Saved opportunity metrics">
+            <div>
+              <strong>{opportunities.length}</strong>
+              <span>Total saved</span>
+            </div>
+            <div>
+              <strong>{savedMetrics.active}</strong>
+              <span>Active records</span>
+            </div>
+            <div>
+              <strong>{savedMetrics.highPriority}</strong>
+              <span>High priority</span>
+            </div>
+          </div>
         </div>
         <aside className="saved-policy card">
-          <BookmarkPlus size={30} />
+          <BriefcaseBusiness size={30} />
           <strong>Manual by design</strong>
           <span>No scraping, no imported listings, no automated applications.</span>
+          <div className="saved-policy-list">
+            <span>Company</span>
+            <span>Role</span>
+            <span>Status</span>
+            <span>Notes</span>
+          </div>
         </aside>
       </section>
 
@@ -272,7 +310,10 @@ function SavedPage() {
           <div className="form-header">
             <span className="eyebrow">Manual save form</span>
             <h2>Add opportunity</h2>
-            <p>Required fields are company, role, source, job URL, and location.</p>
+            <p>
+              Save only roles you found yourself. Required fields are company,
+              role, source, job URL, and location.
+            </p>
           </div>
 
           <div className="form-grid">
@@ -383,12 +424,22 @@ function SavedPage() {
         </form>
 
         <aside className="saved-panel card" aria-label="Saved opportunities summary">
-          <span className="badge badge-teal">Saved list</span>
+          <span className="badge badge-teal">Workspace summary</span>
           <strong>{opportunities.length} saved opportunities</strong>
           <p>
             Manage real opportunities you entered manually. Search and status
             filters are client-side for this foundation.
           </p>
+          <div className="saved-summary-grid" aria-label="Saved opportunity status summary">
+            <div>
+              <span>Interviews</span>
+              <strong>{savedMetrics.interviews}</strong>
+            </div>
+            <div>
+              <span>High priority</span>
+              <strong>{savedMetrics.highPriority}</strong>
+            </div>
+          </div>
           <button className="button button-secondary" type="button" onClick={loadOpportunities}>
             <RefreshCw size={18} />
             Refresh list
@@ -504,6 +555,13 @@ function SavedPage() {
                     ))}
                   </div>
                 ) : null}
+                <div className="opportunity-card-footer">
+                  <span>
+                    <CalendarDays size={15} />
+                    Created {formatDate(opportunity.created_at)}
+                  </span>
+                  <span>{labelFor(workTypeOptions, opportunity.work_type)}</span>
+                </div>
                 <div className="opportunity-actions">
                   <a
                     className="button button-secondary"
@@ -546,6 +604,14 @@ function SavedPage() {
               Update the current application status and notes. Full detail editing
               can grow from this foundation.
             </p>
+            <div className="edit-summary">
+              <span className={`status-pill status-${selectedOpportunity.status}`}>
+                {labelFor(statusOptions, selectedOpportunity.status)}
+              </span>
+              <span className="source-pill">
+                {labelFor(sourceOptions, selectedOpportunity.source)}
+              </span>
+            </div>
           </div>
           <form className="edit-form" onSubmit={handleUpdate}>
             <SelectField
