@@ -145,3 +145,24 @@ All notable changes to JobTrackr will be documented in this file.
 
 - JT-0007 is a stabilization and polish contract, not a new feature contract.
 - No scraping, real-time listings, external job board APIs, AI recommendations, authentication, cloud database, PDF export, deployment, or drag-and-drop pipeline behavior were added.
+
+## 0.8.0 - 2026-07-12
+
+### Added
+
+- Added portfolio-ready desktop screenshots under `assets/screenshots/`.
+- Added portfolio-ready mobile screenshots under `assets/screenshots/`.
+- Added README product preview with actual running-app screenshots.
+- Added demo asset documentation covering screenshot inventory, fictional data policy, and privacy boundaries.
+- Added showcase checklist for GitHub and LinkedIn readiness.
+
+### Changed
+
+- Updated demo, QA, roadmap, architecture, and decision documentation for screenshot showcase readiness.
+- Documented that screenshot data is fictional and that SQLite database files remain uncommitted local runtime data.
+
+### Notes
+
+- JT-0008 is a showcase asset contract, not a product feature contract.
+- Screenshots use fictional local demo records only.
+- No scraping, real-time listings, external job board APIs, fake analytics, AI recommendations, authentication, deployment, cloud database, PDF export, or persistence schema changes were added.

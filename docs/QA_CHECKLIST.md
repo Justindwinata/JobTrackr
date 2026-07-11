@@ -78,9 +78,11 @@ Use `docs/DEMO_SCRIPT.md` for the recommended presentation flow and fictional de
 
 - Confirm desktop screenshots exist in `assets/screenshots/` for Home, Discover, recommendations, Saved Opportunities, Application Tracker, Reports, and HTML report.
 - Confirm mobile screenshots exist in `assets/screenshots/` for Home, Discover, Saved Opportunities, and Application Tracker.
+- Confirm optional `reports-mobile.png` exists if the README or docs reference it.
 - Confirm screenshot content uses fictional demo data only.
 - Confirm screenshot content does not imply real-time listings, scraping, external job board API integrations, AI recommendations, or automated applications.
 - Confirm README screenshot paths resolve and render in GitHub-flavored Markdown.
+- Confirm no SQLite database file is staged or committed with screenshot assets.
 
 ## Accessibility Basics
 

@@ -17,6 +17,7 @@ flowchart LR
     Reports --> Tracker
     Reports --> Repo
     Domain --> Links["External Search URLs"]
+    Screenshots["Portfolio Screenshot Assets"] --> README["README Preview"]
     User --> Boards["External Job Boards"]
     Links --> Boards
 ```
@@ -73,6 +74,19 @@ Current frontend routes:
 - `/saved`
 - `/tracker`
 - `/reports`
+
+## Portfolio Assets
+
+JT-0008 adds static showcase assets under `assets/screenshots/`.
+
+These assets are not runtime dependencies. They support the GitHub README and portfolio presentation by showing the actual local React app and standalone HTML report with fictional demo records.
+
+Screenshot policy:
+
+- Use only fictional demo opportunity data.
+- Do not commit SQLite database files.
+- Do not expose private notes, real job search records, terminal output, devtools, stack traces, or local filesystem paths.
+- Keep screenshot copy aligned with the no-scraping and no-fake-listings product boundary.
 
 ## Recommendation Flow
 
@@ -220,5 +234,7 @@ JT-0005 changes Application Tracker from an honest future preview into a real da
 JT-0006 changes Reports from an honest future preview into a real reporting workflow. It generates JSON and standalone HTML reports from saved opportunities and tracker analytics only.
 
 JT-0007 improves product stability, UX consistency, error feedback, responsive behavior, and accessibility. It does not introduce new backend data sources or unsupported product claims.
+
+JT-0008 adds README and screenshot showcase assets. It does not change backend logic, analytics formulas, database schema, or runtime product behavior.
 
 The backend CORS configuration allows the expected Vite development origin and adjacent Vite fallback ports for local development when the default frontend port is already occupied.

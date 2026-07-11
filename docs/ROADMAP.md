@@ -60,7 +60,16 @@
 
 ## JT-0008 - Screenshot Refresh, README Preview, and Portfolio Showcase Assets
 
-- Capture polished product screenshots.
-- Add README preview image references.
-- Prepare LinkedIn/GitHub showcase copy.
-- Review final portfolio positioning and repository presentation.
+- Capture polished product screenshots. Completed.
+- Add README preview image references. Completed.
+- Document demo asset and privacy policy. Completed.
+- Add portfolio showcase checklist. Completed.
+- Review final portfolio positioning and repository presentation. Completed.
+
+## JT-0009 - LinkedIn and GitHub Showcase Package
+
+- Prepare LinkedIn project announcement copy.
+- Prepare concise GitHub repository description and pinned-project messaging.
+- Add portfolio case-study narrative.
+- Refresh screenshot captions for external sharing.
+- Prepare recruiter-facing demo talking points.

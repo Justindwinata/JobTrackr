@@ -106,4 +106,22 @@ Every screenshot and README preview must preserve the product's honest scope:
   - `assets/screenshots/reports-mobile.png`
 - 320px overflow check passed for Home, Discover, Saved Opportunities, Application Tracker, and Reports.
 - README preview pending.
-- Showcase checklist pending.
+- README preview updated.
+- Showcase checklist documented in `docs/SHOWCASE_CHECKLIST.md`.
+
+## Final Screenshot Inventory
+
+- Desktop screenshots:
+  - `assets/screenshots/home-desktop.png`
+  - `assets/screenshots/discover-desktop.png`
+  - `assets/screenshots/recommendations-desktop.png`
+  - `assets/screenshots/saved-opportunities-desktop.png`
+  - `assets/screenshots/tracker-dashboard-desktop.png`
+  - `assets/screenshots/reports-desktop.png`
+  - `assets/screenshots/html-report-desktop.png`
+- Mobile screenshots:
+  - `assets/screenshots/home-mobile.png`
+  - `assets/screenshots/discover-mobile.png`
+  - `assets/screenshots/saved-opportunities-mobile.png`
+  - `assets/screenshots/tracker-mobile.png`
+  - `assets/screenshots/reports-mobile.png`

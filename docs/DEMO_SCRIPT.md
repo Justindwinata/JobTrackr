@@ -85,6 +85,9 @@ Delete demo records after screenshots if they are not needed anymore.
 - Application Tracker dashboard with pipeline visible.
 - Reports page with summary and distributions.
 - Standalone HTML report.
+- Mobile Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports responsive views.
+
+Screenshot files are stored in `assets/screenshots/`. See `docs/DEMO_ASSETS.md` for the exact inventory and privacy policy.
 
 ## Demo Boundaries
 

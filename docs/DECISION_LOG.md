@@ -178,3 +178,23 @@ Reasoning:
 - The portfolio value now depends on reliability and presentation quality.
 - Error states and responsive behavior are part of product credibility.
 - Avoiding scope expansion keeps the no-scraping, no-AI, local-only architecture clear.
+
+## 2026-07-12 - Use actual running-app screenshots for README preview
+
+JT-0008 adds screenshots captured from the local running JobTrackr frontend and backend instead of mockups.
+
+Reasoning:
+
+- The README should show the real product state, not a design-only artifact.
+- Actual screenshots verify the frontend, backend, tracker, reports, and HTML report work together.
+- Portfolio assets should demonstrate implementation quality while staying honest about product scope.
+
+## 2026-07-12 - Keep screenshot data fictional and isolated
+
+JT-0008 uses fictional demo opportunity records for screenshots and keeps SQLite database files out of Git.
+
+Reasoning:
+
+- Portfolio screenshots must not expose private job search data or personal notes.
+- Demo records should be visually useful without implying real job listings or real-time ingestion.
+- Local persistence remains runtime data under ignored `backend/data/`.
