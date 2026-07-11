@@ -90,7 +90,14 @@ Every screenshot and README preview must preserve the product's honest scope:
 ## JT-0008 Status
 
 - Screenshot plan documented.
-- Desktop screenshots pending.
+- Desktop screenshots captured:
+  - `assets/screenshots/home-desktop.png`
+  - `assets/screenshots/discover-desktop.png`
+  - `assets/screenshots/recommendations-desktop.png`
+  - `assets/screenshots/saved-opportunities-desktop.png`
+  - `assets/screenshots/tracker-dashboard-desktop.png`
+  - `assets/screenshots/reports-desktop.png`
+  - `assets/screenshots/html-report-desktop.png`
 - Mobile screenshots pending.
 - README preview pending.
 - Showcase checklist pending.
