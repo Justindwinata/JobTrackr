@@ -12,6 +12,7 @@ Use `docs/DEMO_SCRIPT.md` for the recommended presentation flow and fictional de
 - Confirm local SQLite data is either intentionally empty or intentionally seeded for demo.
 - Confirm any demo record is fictional and removable after screenshots.
 - Confirm the app never claims scraping, real-time job listings, job board API access, AI recommendations, or automated applications.
+- Confirm screenshot captures use `docs/DEMO_ASSETS.md` and do not expose private records, terminal output, devtools, stack traces, local paths, or SQLite internals.
 
 ## Discover Jobs
 
@@ -72,6 +73,14 @@ Use `docs/DEMO_SCRIPT.md` for the recommended presentation flow and fictional de
 - Check Home, Discover, Saved, Tracker, Reports, and HTML report at 320px.
 - Confirm there is no page-level horizontal overflow.
 - Confirm mobile navigation opens, closes, and routes correctly.
+
+## Screenshot Assets
+
+- Confirm desktop screenshots exist in `assets/screenshots/` for Home, Discover, recommendations, Saved Opportunities, Application Tracker, Reports, and HTML report.
+- Confirm mobile screenshots exist in `assets/screenshots/` for Home, Discover, Saved Opportunities, and Application Tracker.
+- Confirm screenshot content uses fictional demo data only.
+- Confirm screenshot content does not imply real-time listings, scraping, external job board API integrations, AI recommendations, or automated applications.
+- Confirm README screenshot paths resolve and render in GitHub-flavored Markdown.
 
 ## Accessibility Basics
 
