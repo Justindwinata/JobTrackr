@@ -6,6 +6,42 @@ The product helps users choose skills, target roles, and preferred locations, th
 
 JobTrackr does not scrape job boards, ingest real-time job listings, or automate job applications.
 
+## Product Preview
+
+The screenshots below are captured from the actual local running app using fictional demo data only.
+
+### Home
+
+![JobTrackr Home page](assets/screenshots/home-desktop.png)
+
+### Discover Jobs
+
+![JobTrackr Discover Jobs page](assets/screenshots/discover-desktop.png)
+
+### Recommendation Results
+
+![JobTrackr recommendation results](assets/screenshots/recommendations-desktop.png)
+
+### Saved Opportunities
+
+![JobTrackr Saved Opportunities workspace](assets/screenshots/saved-opportunities-desktop.png)
+
+### Application Tracker
+
+![JobTrackr Application Tracker dashboard](assets/screenshots/tracker-dashboard-desktop.png)
+
+### Reports and HTML Report
+
+![JobTrackr Reports page](assets/screenshots/reports-desktop.png)
+
+![JobTrackr standalone HTML report](assets/screenshots/html-report-desktop.png)
+
+### Mobile Preview
+
+| Home | Discover | Saved | Tracker |
+| --- | --- | --- | --- |
+| ![JobTrackr mobile Home](assets/screenshots/home-mobile.png) | ![JobTrackr mobile Discover](assets/screenshots/discover-mobile.png) | ![JobTrackr mobile Saved Opportunities](assets/screenshots/saved-opportunities-mobile.png) | ![JobTrackr mobile Tracker](assets/screenshots/tracker-mobile.png) |
+
 ## Product Scope
 
 JobTrackr is designed to help early-career candidates:
@@ -102,9 +138,21 @@ JobTrackr has been stabilized for portfolio demos:
 
 JT-0007 does not add scraping, fake listings, authentication, deployment, AI, PDF export, or cloud infrastructure.
 
+## JT-0008 Implementation
+
+JobTrackr now includes portfolio-ready visual showcase assets:
+
+- Desktop screenshots for Home, Discover Jobs, recommendation results, Saved Opportunities, Application Tracker, Reports, and the standalone HTML report.
+- Mobile screenshots for Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports.
+- README product preview with real running-app screenshots.
+- Demo asset documentation covering fictional data, privacy boundaries, screenshot inventory, and no-scraping scope.
+
+The screenshots use fictional local demo records only. They do not show real personal job search data, private notes, fake real-time listings, scraping output, or AI-generated recommendations.
+
 ## Repository Structure
 
 ```text
+assets/screenshots/
 backend/
 frontend/
 docs/
@@ -213,6 +261,7 @@ make format-check
 ## Demo Flow
 
 Use `docs/DEMO_SCRIPT.md` for a complete local demo walkthrough.
+Use `docs/DEMO_ASSETS.md` for the screenshot inventory and fictional demo data policy.
 
 Recommended screenshot flow:
 
@@ -221,6 +270,15 @@ Recommended screenshot flow:
 3. Saved Opportunities with one manually entered fictional QA/demo opportunity.
 4. Application Tracker dashboard using the saved opportunity.
 5. Reports page and standalone HTML report.
+
+## Current Feature Summary
+
+- Safe external job search URL generation for LinkedIn, JobStreet Indonesia, Glints, Karir.com, and Dealls.
+- Manual Saved Opportunities CRUD backed by local SQLite.
+- Application Tracker dashboard derived from saved opportunities.
+- Career Progress Reports in JSON and standalone HTML.
+- Responsive React frontend with portfolio-ready screenshots.
+- Honest local-first scope with no scraping, no fake listings, no authentication, no cloud database, and no AI/LLM recommendation.
 
 ## No-Scraping Statement
 
