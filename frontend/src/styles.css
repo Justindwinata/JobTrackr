@@ -3148,3 +3148,508 @@ body::after {
     transition-duration: 0.001ms !important;
   }
 }
+
+/* JT-0009 page composition: layered SaaS surfaces and scroll-storytelling rhythm. */
+.page-shell {
+  position: relative;
+  isolation: isolate;
+}
+
+.page-shell::before {
+  position: absolute;
+  top: 22px;
+  right: -32px;
+  z-index: -1;
+  width: min(58vw, 680px);
+  height: 420px;
+  pointer-events: none;
+  background:
+    linear-gradient(135deg, rgba(255, 158, 32, 0.18), transparent 52%),
+    linear-gradient(45deg, transparent 16%, rgba(33, 94, 97, 0.12) 17% 18%, transparent 19% 100%);
+  filter: blur(1px);
+  transform: skewY(-8deg);
+  content: "";
+}
+
+.home-hero,
+.discover-hero,
+.saved-hero,
+.tracker-hero,
+.reports-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: visible;
+  border-color: rgba(255, 255, 255, 0.72);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0.56)),
+    linear-gradient(145deg, rgba(255, 158, 32, 0.18), transparent 42%),
+    linear-gradient(315deg, rgba(33, 94, 97, 0.14), transparent 48%);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.72) inset,
+    0 38px 100px rgba(29, 33, 40, 0.14);
+}
+
+.home-hero::before,
+.discover-hero::before,
+.saved-hero::before,
+.tracker-hero::before,
+.reports-hero::before {
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(135deg, rgba(255, 158, 32, 0.65), transparent 30%, rgba(33, 94, 97, 0.38));
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  content: "";
+}
+
+.home-hero::after,
+.discover-hero::after,
+.saved-hero::after,
+.tracker-hero::after,
+.reports-hero::after {
+  position: absolute;
+  right: var(--space-8);
+  bottom: -18px;
+  z-index: -1;
+  width: 42%;
+  height: 80px;
+  border-radius: 12px;
+  background:
+    linear-gradient(90deg, rgba(33, 94, 97, 0.18), rgba(255, 158, 32, 0.2)),
+    rgba(255, 255, 255, 0.24);
+  filter: blur(18px);
+  content: "";
+}
+
+.home-hero h1,
+.discover-hero h1,
+.saved-hero h1,
+.tracker-hero h1,
+.reports-hero h1,
+.future-copy h1 {
+  text-wrap: balance;
+}
+
+.home-hero-copy,
+.discover-hero > div:first-child,
+.saved-hero > div:first-child,
+.tracker-hero > div:first-child,
+.reports-hero > div:first-child {
+  animation: hero-copy-reveal 900ms var(--ease-premium) both;
+}
+
+.product-mockup,
+.discover-note,
+.saved-policy,
+.tracker-refresh-card {
+  position: relative;
+  transform: translateY(18px);
+  animation: hero-panel-float 900ms 120ms var(--ease-premium) both;
+}
+
+.product-mockup {
+  margin-right: calc(var(--space-6) * -1);
+  box-shadow:
+    0 34px 80px rgba(33, 94, 97, 0.16),
+    0 1px 0 rgba(255, 255, 255, 0.72) inset;
+}
+
+.mockup-card {
+  transition:
+    transform 320ms var(--ease-spring),
+    border-color 220ms ease,
+    box-shadow 260ms ease;
+}
+
+.mockup-card:hover,
+.mockup-card.active {
+  transform: translateY(-7px) rotate(-0.6deg);
+  box-shadow: 0 22px 52px rgba(33, 94, 97, 0.18);
+}
+
+.board-strip {
+  position: relative;
+  z-index: 2;
+  margin-top: calc(var(--space-4) * -1);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.66));
+  box-shadow: var(--shadow-float);
+}
+
+.board-strip strong {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 var(--space-3);
+  border-radius: 999px;
+  background: rgba(33, 94, 97, 0.07);
+  transition:
+    transform 220ms var(--ease-premium),
+    background 220ms ease,
+    color 220ms ease;
+}
+
+.board-strip strong:hover {
+  transform: translateY(-2px);
+  background: var(--color-neutral);
+  color: var(--color-surface);
+}
+
+.section-block,
+.results-section,
+.saved-list-section,
+.tracker-section {
+  animation: section-rise 760ms var(--ease-premium) both;
+  animation-timeline: view();
+  animation-range: entry 0% cover 28%;
+}
+
+.section-heading {
+  position: relative;
+}
+
+.section-heading::after {
+  width: 84px;
+  height: 3px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+  content: "";
+}
+
+.feature-matrix .feature-card:nth-child(2),
+.workflow-grid .workflow-card:nth-child(2),
+.opportunity-grid .opportunity-card:nth-child(2),
+.tracker-card-grid .tracker-summary-card:nth-child(2) {
+  transform: translateY(var(--space-4));
+}
+
+.feature-matrix .feature-card:nth-child(3),
+.workflow-grid .workflow-card:nth-child(4),
+.tracker-card-grid .tracker-summary-card:nth-child(5) {
+  transform: translateY(calc(var(--space-3) * -1));
+}
+
+.feature-matrix .feature-card:hover,
+.workflow-grid .workflow-card:hover,
+.opportunity-grid .opportunity-card:hover,
+.tracker-card-grid .tracker-summary-card:hover {
+  transform: translateY(-7px) scale(1.005);
+}
+
+.discover-layout,
+.saved-workspace {
+  position: relative;
+  margin-top: calc(var(--space-6) * -1);
+  padding-top: var(--space-10);
+}
+
+.discover-form,
+.opportunity-form {
+  box-shadow:
+    0 30px 80px rgba(29, 33, 40, 0.1),
+    0 1px 0 rgba(255, 255, 255, 0.72) inset;
+}
+
+.preview-panel,
+.saved-panel {
+  transform: translateY(-12px);
+  box-shadow: var(--shadow-glass);
+}
+
+.results-summary {
+  position: relative;
+  overflow: hidden;
+}
+
+.results-summary::after,
+.report-meta-strip::after,
+.saved-toolbar::after {
+  position: absolute;
+  inset: auto -10% 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255, 158, 32, 0.65), rgba(33, 94, 97, 0.48), transparent);
+  content: "";
+}
+
+.recommendation-card,
+.opportunity-card {
+  isolation: isolate;
+}
+
+.recommendation-card::after,
+.opportunity-card::after,
+.pipeline-opportunity-card::after {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  opacity: 0;
+  background:
+    linear-gradient(135deg, rgba(255, 158, 32, 0.12), transparent 48%),
+    linear-gradient(315deg, rgba(33, 94, 97, 0.08), transparent 45%);
+  transition: opacity 240ms ease;
+  content: "";
+}
+
+.recommendation-card:hover::after,
+.opportunity-card:hover::after,
+.pipeline-opportunity-card:hover::after {
+  opacity: 1;
+}
+
+.external-link-button {
+  border-radius: 14px;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.62);
+}
+
+.external-link-button:hover svg,
+.icon-button:hover svg {
+  transform: rotate(-8deg) scale(1.05);
+}
+
+.external-link-button svg,
+.icon-button svg,
+.feature-icon {
+  transition: transform 240ms var(--ease-spring);
+}
+
+.feature-card:hover .feature-icon {
+  transform: rotate(-5deg) scale(1.1);
+}
+
+.saved-toolbar,
+.report-meta-strip,
+.activity-list {
+  position: relative;
+  overflow: hidden;
+}
+
+.opportunity-card-footer {
+  background: linear-gradient(90deg, rgba(33, 94, 97, 0.05), transparent);
+  margin: 0 calc(var(--space-6) * -1) calc(var(--space-2) * -1);
+  padding: var(--space-4) var(--space-6) 0;
+}
+
+.pipeline-board {
+  scroll-snap-type: x proximity;
+  padding: var(--space-2) var(--space-1) var(--space-4);
+}
+
+.pipeline-column {
+  scroll-snap-align: start;
+}
+
+.pipeline-opportunity-card {
+  position: relative;
+  overflow: hidden;
+  transition:
+    transform 220ms var(--ease-premium),
+    box-shadow 220ms ease,
+    border-color 220ms ease;
+}
+
+.pipeline-opportunity-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(255, 158, 32, 0.32);
+  box-shadow: 0 18px 40px rgba(33, 94, 97, 0.14);
+}
+
+.distribution-track {
+  position: relative;
+  height: 12px;
+  background:
+    linear-gradient(90deg, rgba(33, 94, 97, 0.07), rgba(255, 158, 32, 0.08));
+}
+
+.distribution-track span {
+  transform-origin: left;
+  animation: bar-grow 900ms var(--ease-premium) both;
+}
+
+.deadline-panel,
+.distribution-panel,
+.report-pipeline-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.deadline-panel::before,
+.distribution-panel::before,
+.report-pipeline-card::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-brand), var(--color-accent));
+  content: "";
+}
+
+.tracker-opportunity-row {
+  transition:
+    transform 220ms var(--ease-premium),
+    border-color 220ms ease,
+    box-shadow 220ms ease;
+}
+
+.tracker-opportunity-row:hover {
+  transform: translateX(4px);
+  border-color: rgba(33, 94, 97, 0.24);
+  box-shadow: var(--shadow-sm);
+}
+
+.empty-state {
+  position: relative;
+  overflow: hidden;
+  box-shadow: var(--shadow-float);
+}
+
+.empty-state::before {
+  position: absolute;
+  inset: 0 0 auto;
+  height: 4px;
+  background: linear-gradient(90deg, var(--color-accent), var(--color-brand));
+  content: "";
+}
+
+.form-alert,
+.form-success {
+  box-shadow: 0 16px 34px rgba(29, 33, 40, 0.08);
+  animation: message-slide 360ms var(--ease-premium) both;
+}
+
+@keyframes hero-copy-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(22px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes hero-panel-float {
+  from {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(34px) scale(0.96);
+  }
+
+  to {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(18px) scale(1);
+  }
+}
+
+@keyframes section-rise {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleX(0);
+  }
+
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes message-slide {
+  from {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 1100px) {
+  .product-mockup {
+    margin-right: 0;
+  }
+
+  .feature-matrix .feature-card:nth-child(n),
+  .workflow-grid .workflow-card:nth-child(n),
+  .opportunity-grid .opportunity-card:nth-child(n),
+  .tracker-card-grid .tracker-summary-card:nth-child(n) {
+    transform: none;
+  }
+}
+
+@media (max-width: 840px) {
+  .site-header {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(244, 242, 242, 0.78));
+  }
+
+  .nav-links {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 255, 255, 0.86));
+    backdrop-filter: blur(18px);
+  }
+
+  .home-hero::after,
+  .discover-hero::after,
+  .saved-hero::after,
+  .tracker-hero::after,
+  .reports-hero::after {
+    display: none;
+  }
+
+  .discover-layout,
+  .saved-workspace {
+    margin-top: var(--space-5);
+    padding-top: 0;
+  }
+
+  .preview-panel,
+  .saved-panel,
+  .product-mockup,
+  .discover-note,
+  .saved-policy,
+  .tracker-refresh-card {
+    transform: none;
+  }
+}
+
+@media (max-width: 520px) {
+  .button {
+    width: 100%;
+  }
+
+  .button-row .button,
+  .button-row-tight .button {
+    width: auto;
+    flex: 1 1 180px;
+  }
+
+  .home-hero,
+  .discover-hero,
+  .saved-hero,
+  .tracker-hero,
+  .reports-hero {
+    border-radius: 18px;
+  }
+
+  .opportunity-card-footer {
+    margin-right: calc(var(--space-6) * -1);
+  }
+}
