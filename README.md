@@ -149,6 +149,18 @@ JobTrackr now includes portfolio-ready visual showcase assets:
 
 The screenshots use fictional local demo records only. They do not show real personal job search data, private notes, fake real-time listings, scraping output, or AI-generated recommendations.
 
+## Premium UI Polish
+
+The frontend has been refined with a premium interaction layer while preserving the existing product behavior:
+
+- Layered glass surfaces, refined shadows, and stronger visual hierarchy across every route.
+- Tactile buttons, cards, badges, inputs, and external search links with hover, press, focus, and loading feedback.
+- Smooth page reveal, hero panel reveal, message motion, distribution bar animation, and reduced-motion support.
+- More intentional overlapping sections and dashboard-style depth for Home, Discover Jobs, Saved Opportunities, Application Tracker, and Reports.
+- Responsive safeguards verified across desktop, tablet, and mobile widths.
+
+This polish does not change backend APIs, routing, saved opportunity CRUD, tracker analytics, report generation, or the no-scraping product boundary.
+
 ## Repository Structure
 
 ```text

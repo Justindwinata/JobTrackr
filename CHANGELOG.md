@@ -166,3 +166,18 @@ All notable changes to JobTrackr will be documented in this file.
 - JT-0008 is a showcase asset contract, not a product feature contract.
 - Screenshots use fictional local demo records only.
 - No scraping, real-time listings, external job board APIs, fake analytics, AI recommendations, authentication, deployment, cloud database, PDF export, or persistence schema changes were added.
+
+## 0.9.0 - 2026-07-12
+
+### Changed
+
+- Added a premium visual polish layer across the React frontend.
+- Improved global background treatment, glass surfaces, shadows, borders, and depth.
+- Enhanced buttons, cards, badges, inputs, navigation, recommendation cards, saved opportunity cards, tracker panels, and report panels with micro interactions.
+- Added page reveal, hero panel reveal, message animation, distribution bar animation, hover lift, button shine, and reduced-motion support.
+- Refined responsive behavior without changing routes, API clients, CRUD behavior, tracker analytics, or report generation.
+
+### Notes
+
+- This is a UI/UX polish pass, not a new feature contract.
+- Existing functionality, backend communication, persistence behavior, and product limitations remain unchanged.
